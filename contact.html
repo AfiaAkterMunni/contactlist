@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Contact</title>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar-area">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <div class="brand_logo_div fixed-brand">
+                    <a class="navbar-brand" href="#">
+                        <h5 class="brand_logo">Contact<span>List</span></h5>
+                    </a>
+                </div>
+                <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                    <li class='{{ request()->segment(1) == 'contacts' ? 'active' : '' }}'>
+                        <a href="#">
+                            <span class="menu_ic">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                    <title>People</title>
+                                    <path
+                                        d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72z"
+                                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="32" />
+                                    <path
+                                        d="M336 304c-65.17 0-127.84 32.37-143.54 95.41-2.08 8.34 3.15 16.59 11.72 16.59h263.65c8.57 0 13.77-8.25 11.72-16.59C463.85 335.36 401.18 304 336 304z"
+                                        fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+                                    <path
+                                        d="M200 185.94c-2.34 32.48-26.72 58.06-53 58.06s-50.7-25.57-53-58.06C91.61 152.15 115.34 128 147 128s55.39 24.77 53 57.94z"
+                                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="32" />
+                                    <path
+                                        d="M206 306c-18.05-8.27-37.93-11.45-59-11.45-52 0-102.1 25.85-114.65 76.2-1.65 6.66 2.53 13.25 9.37 13.25H154"
+                                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
+                                        stroke-width="32" />
+                                </svg>
+                            </span>
+                            <span class="menu_a">Contact</span>
+                        </a>
+                    </li>
+                    <hr style="border-bottom: 1px solid #000;margin: 5px 0;">
+                </ul>
+            </div>
+        </div>
+        <div class="content-area">
+            <div class="module-header">
+                <h2 class="currentModule">
+                    <!-- {!! PageIcon() ?? '' !!}
+                    {!! PageTitle($module['title'], true) ?? '' !!}
+                    @if (isset($module['addRoute'])) -->
+                        <a href="{{ $module['addRoute'] }}" class="{{ $module['ajaxAdd'] ? 'popup' : '' }} btn btn_a"
+                            data-w="{{ isset($module['popup-width']) ? $module['popup-width'] : 500 }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                <title>Add New</title>
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="32" d="M256 112v288M400 256H112" />
+                            </svg>
+                            <div class="add-label">
+                                Add New
+                            </div>
+                        </a>
+                    <!-- @endif -->
+                </h2>
+                <div class="loader" onclick="sysnData()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                        <title>Sync</title>
+                        <path
+                            d="M434.67 285.59v-29.8c0-98.73-80.24-178.79-179.2-178.79a179 179 0 00-140.14 67.36m-38.53 82v29.8C76.8 355 157 435 256 435a180.45 180.45 0 00140-66.92"
+                            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                            d="M32 256l44-44 46 44M480 256l-44 44-46-44" />
+                    </svg>
+                </div>
+                <div class="searchBox">
+                    <div class="search-input">
+                        <span class="searchCancel" onclick="searchCancel(event)">&times;</span>
+                        <input type="text" onkeyup="searchData(event)" placeholder="Search" class="searchInput form-control">
+                    </div>
+                </div>
+                <div class="header-right sm-none">
+                    <!-- Right -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect user-dropdown-toggler" id="navbarDropdownMenuLink3"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                    <title>User</title>
+                                    <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
+                                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="32" />
+                                    <path
+                                        d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
+                                        fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+            
+                            </div>
+                        </li>
+                    </ul>
+            
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+            <div class="mobile-nav">
+                <div class="nav-item">
+                    <div class="nav-toggler" onclick="navToggle()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <div class="loader" onclick="sysnData()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                            <title>Sync</title>
+                            <path
+                                d="M434.67 285.59v-29.8c0-98.73-80.24-178.79-179.2-178.79a179 179 0 00-140.14 67.36m-38.53 82v29.8C76.8 355 157 435 256 435a180.45 180.45 0 00140-66.92"
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="32">
+                            </path>
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="32" d="M32 256l44-44 46 44M480 256l-44 44-46-44"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect user-dropdown-toggler" id="navbarDropdownMenuLink3"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                            <title>User</title>
+                            <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="32" />
+                            <path
+                                d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
+                                fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+            
+                    </div>
+                </div>
+            </div>
+            <div id="page-content-wrapper">
+                <div class="container-fluid xyz">
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div id="datalist"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @yield('content') -->
+        </div>
+    </div>
+    <!-- Scripts -->
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+    <!-- @yield('script') -->
+
+
+
+    <script>
+        LoadData();
+
+        function LoadData(customRoute, routeSufix) {
+            let route = "/contact/data"; 
+            if (customRoute) {
+                route = customRoute;
+            }
+            if (routeSufix) {
+                route += routeSufix;
+            }
+            let dataWrap = document.querySelector("#datalist");
+            let databulder = new DataBuilder(dataWrap, {
+                apiRoute: route,
+                model: 'Contact',
+                autoRefress: 10,
+                columns: { 
+                    company: {
+                        visible: true,
+                        title: "Company Name",
+                        width: "20%", 
+                    },
+                    name: {
+                        visible: true,
+                        title: "Name",
+                        width: "15%",
+                        filter: function(ListName, itemData) {
+                            let str = [];
+                            for (const i in itemData.contactlistsData) {
+                                str.push(itemData.contactlistsData[i].name);
+                            }
+
+                            return `<span title="Contact Lists : ${str.join(',')}">${ListName}</span>`;
+                        }
+                    },
+                    email: {
+                        visible: true,
+                        title: "Email",
+                        width: "15%", 
+                    },
+                    phone: {
+                        visible: true,
+                        title: "Mobile No",
+                        width: "10%", 
+                    },
+                    category: {
+                        visible: true,
+                        title: "Category",
+                        width: "8%", 
+                    },
+                    address: {
+                        visible: true,
+                        title: "Address",
+                        width: "20%", 
+                    },
+                    country: {
+                        visible: true,
+                        title: "Country",
+                        width: "15%", 
+                    },
+
+                    // SentCount: {
+                    //     visible: true,
+                    //     title: "Progress",
+                    //     width: "40%",
+                    //     filter: function(sentCount, itemData) {
+                    //         let prcnt = ((100 / itemData.contactsCount) * sentCount).toFixed(1);
+                    //         return `<div class="progress-info"><span>${prcnt}%</span><div class="mailer-progress-bar"><div class="mailer-progress" style='width:${prcnt}%'></div></div></div>`;
+                    //     }
+                    // },
+                    // status: {
+                    //     visible: true,
+                    //     title: "Status",
+                    //     width: "12%",
+                    //     dataFilter: { //Data Filter is used to filter the data list based on the value(k) of the column(status).
+                    //         callback: 'filterData',
+                    //         sections: {
+                    //             1: "Active",
+                    //             0: "Inactive",
+                    //             2: "Pause",
+                    //             3: "Complete",
+                    //             4: "Scheduled"
+                    //         }
+                    //     },
+                    //     filter: function(status, row) {
+                    //         switch (status) {
+                    //             case "1":
+                    //                 return `<a href="javascript:void(0)" onclick="filterData(event,'status','${status}')">Active</a>`;
+                    //             case "0":
+                    //                 return `<a href="javascript:void(0)" onclick="filterData(event,'status','${status}')">Inactive</a>`;
+                    //             case "2":
+                    //                 return `<a href="javascript:void(0)" onclick="filterData(event,'status','${status}')">Pause</a>`;
+                    //             case "3":
+                    //                 return `<a href="javascript:void(0)" onclick="filterData(event,'status','${status}')">Complete</a> <span title="Re-Queue as New Campaign" onclick="reStartCamp(${row.id},this)" class="restartCampaign"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Re-Queue as New Campaign</title><path d="M288 193s12.18-6-32-6a80 80 0 1080 80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M256 149l40 40-40 40"/><path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg></span>`;
+                    //             case "4":
+                    //                 return `<a href="javascript:void(0)" onclick="filterData(event,'status','${status}')">Scheduled</a>`;
+                    //             default:
+                    //                 return "";
+                    //         }
+                    //     }
+                    // },
+                },
+                // rowClassFilter: function(row) {
+                //     switch (row.status) {
+                //         case "1":
+                //             return "data-row-ok";
+                //             break;
+                //         case "3":
+                //             return "data-row-complete";
+                //             break;
+                //         case "2":
+                //             return "data-row-paused";
+                //             break;
+                //         case "4":
+                //             return "data-row-scheduled";
+                //             break;
+                //         case "0":
+                //             return "inactive";
+                //             break;
+                //         default:
+                //             return "data-row-item";
+                //             break;
+                //     }
+                // },
+                actions: {
+                    edit: {
+                        url: "/contact/edit/{id}",
+                        title: '<i class="mailer-icon edit"></i>',
+                        class: "popup",
+                        attr: {
+                            'data-w': "750"
+                        }
+                    },
+                    delete: {
+                        url: "/contact/delete/{id}",
+                        title: '<i class="mailer-icon delete"></i>',
+                        class: "",
+                        attr: {
+                            'onclick': "deleteData(event,this)",
+                        }
+                    }
+                },
+                // bulkActions: {
+                //     pause: {
+                //         label: "Pause",
+                //         confirm: true,
+                //         route: "pause",
+                //         confirmCallback: (PostBulkAction, _this) => {
+                //             let Conf = new ConfirmBox({
+                //                 param: {
+                //                     _this: _this
+                //                 },
+                //                 title: "Pause Confirmations",
+                //                 message: `Are you sure to Pause Selected ${_this.model} ?`,
+                //                 yesCallback: PostBulkAction, //this.bulkActions.active.callback,
+                //             });
+                //         }
+                //     },
+                //     complete: {
+                //         label: "Mark as Complete",
+                //         confirm: true,
+                //         route: "complete",
+                //         confirmCallback: (PostBulkAction, _this) => {
+                //             let Conf = new ConfirmBox({
+                //                 param: {
+                //                     _this: _this
+                //                 },
+                //                 title: "Confirmations",
+                //                 message: `Sure to mark as Complete Selected ${_this.model} ?`,
+                //                 yesCallback: PostBulkAction, //this.bulkActions.active.callback,
+                //             });
+                //         }
+                //     }
+                // },
+                 startProcess: function() {
+                     window.DataPath = route;
+                     inProcess();
+                 },
+                 endProcess: function() {
+                    new popup();
+                    completaProcess();
+                    icon.init();
+                }
+            });
+        }
+
+        function reStartCamp(id, _this) {
+            axios.post('/campaign/restert', {
+                    id: id
+                })
+                .then((response) => {
+                    response = response.data;
+                    if (response.error) {
+                        ntf(response.msg, 'error')
+                    } else {
+                        ntf(response.msg, 'success');
+                        LoadData();
+                    }
+                })
+                .catch((error) => {
+                    ntf(error, "error"); //error.response.headers);
+                })
+        }
+    </script>
+</body>
+
+</html>
