@@ -10100,10 +10100,10 @@ table tbody tr.data-row-paused * {
   background-position: center;
   background-repeat: no-repeat;
   transition: all 0.1s;
-  background-image: url(/images/dashboard.png?eca041133c71ab4f5e1dcf4cbbde723b);
+  background-image: url(../images/dashboard.png);
 }
 .mailer-icon.contacts {
-  background-image: url(/images/contacts.png?da9aa67214b80deb18f25ac45dd47543);
+  background-image: url(../images/contacts.png);
 }
 .mailer-icon.newsletter {
   background-image: url(/images/newsletter.png?dbc82f94289423fc9b3a637617ffdcef);
