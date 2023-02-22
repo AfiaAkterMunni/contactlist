@@ -1,13 +1,8 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
   <title>Contact</title>
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,7 +24,7 @@
           </a>
         </div>
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-          <li class='{{ request()->segment(1) == ' contacts' ? 'active' : '' }}'>
+          <li class="active">
             <a href="#">
               <span class="menu_ic">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">

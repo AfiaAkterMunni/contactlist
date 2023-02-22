@@ -10124,10 +10124,10 @@ table tbody tr.data-row-paused * {
   background-image: url(/images/settings.png?acced8376548719a13b96dd020053dcb);
 }
 .mailer-icon.delete {
-  background-image: url(/images/delete.png?b45f0013b9b9a33439f95817a457c3fd);
+  background-image: url(../images/delete.png);
 }
 .mailer-icon.edit {
-  background-image: url(/images/edit.png?f10c23c7585bdd8608f277847b9b8ecd);
+  background-image: url(../images/edit.png);
 }
 .mailer-icon.bounce {
   background-image: url(/images/bounce.png?f02b59d8b5c0c270886e1a640f724e8a);
