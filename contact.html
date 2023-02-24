@@ -29,7 +29,6 @@
             <a href="#">
               <span class="menu_ic">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                  <title>People</title>
                   <path
                     d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72z"
                     fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -56,9 +55,9 @@
     <div class="content-area">
       <div class="module-header">
         <h2 class="currentModule">
-          <div class="page-icon"><i class="mailer-icon "></i></div>
+          <div class="page-icon"><i class="mailer-icon"></i></div>
           Contact
-          <a href="https://www.duttawebapps.com/contact/create" class="popup btn btn_a" data-w="750">
+          <a href="#" class="popup btn btn_a" data-w="750"  onclick="openForm()">
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
               <title>Add New</title>
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
@@ -89,8 +88,8 @@
           <!-- Right -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle waves-effect user-dropdown-toggler" id="navbarDropdownMenuLink3"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <a class="nav-link dropdown-toggle waves-effect user-dropdown-toggler" id="navbarDropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                   <title>User</title>
                   <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
@@ -101,16 +100,15 @@
                     fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
                 </svg>
               </a>
-              <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="https://www.duttawebapps.com/logout"
+              <div class="dropdown-menu drop_manu show" aria-labelledby="navbarDropdownMenuLink" style="position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                <a class="dropdown-item" href="#"
                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-
               </div>
             </li>
           </ul>
 
           <form id="logout-form" action="https://www.duttawebapps.com/logout" method="POST" class="d-none">
-            <input type="hidden" name="_token" value="5Gq4Cihsi0aWKpgozYPVMJBvpkhCtVb1fY1d6h6K">
+            <input type="hidden" name="_token" value="">
           </form>
         </div>
       </div>
@@ -319,14 +317,12 @@
                         <li>5000</li>
                       </ul>
                     </div>
-                    <div class="pagination-wrap pagination"><a href="javascript:void(0)" class="active"
-                        onclick="LoadData('https://www.duttawebapps.com/contact/data?page=1')">1</a><a
-                        href="javascript:void(0)" class=""
-                        onclick="LoadData('https://www.duttawebapps.com/contact/data?page=2')">2</a><a
-                        href="javascript:void(0)" class=""
-                        onclick="LoadData('https://www.duttawebapps.com/contact/data?page=2')">Next »</a><a
-                        href="javascript:void(0)"
-                        onclick="LoadData('https://www.duttawebapps.com/contact/data?page=2')">Last</a></div>
+                    <div class="pagination-wrap pagination">
+                      <a href="" class="active" onclick="">1</a>
+                      <a href="" class="" onclick="">2</a>
+                      <a href="" class="" onclick="">Next »</a>
+                      <a href="" onclick="">Last</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -338,21 +334,21 @@
   </div>
 
   <!-- ADD NEW POP UP DESIGN -->
-  <div class="popup-wrap" style="display: none;">
-    <div class="popup-body " style="width:750px"><span class="closePopup"></span>
+  <div class="popup-wrap" id="myForm" style="display: none;">
+    <div class="popup-body " style="width:750px" onclick="closeForm()"><span class="closePopup"></span>
       <div class="popup-inner">
-        <form class="ajx" action="https://www.duttawebapps.com/contact/store">
+        <form class="ajx" action="">
           <div class="row">
             <div class="formItem col-md-6">
               <label>Name</label>
               <div class="fieldArea">
-                <input type="text" name="data[name]" value="" class="form-control" placeholder="Name">
+                <input type="text" name="name" value="" class="form-control" placeholder="Name">
               </div>
             </div>
             <div class="formItem col-md-6">
               <label>Email</label>
               <div class="fieldArea">
-                <input type="email" name="data[email]" value="" class="form-control" placeholder="Email Address">
+                <input type="email" name="email" value="" class="form-control" placeholder="Email Address">
               </div>
             </div>
           </div>
@@ -360,13 +356,27 @@
             <div class="formItem col-md-6">
               <label>Mobile</label>
               <div class="fieldArea">
-                <input type="text" name="data[phone]" value="" class="form-control" placeholder="Mobile Number">
+                <input type="number" name="mobile" value="" class="form-control" placeholder="Mobile Number">
+              </div>
+            </div>
+            <div class="formItem col-md-6">
+              <label>Phone</label>
+              <div class="fieldArea">
+                <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="formItem col-md-6">
+              <label>Website</label>
+              <div class="fieldArea">
+                <input type="text" name="website" value="" class="form-control" placeholder="Website">
               </div>
             </div>
             <div class="formItem col-md-6">
               <label>Company</label>
               <div class="fieldArea">
-                <input type="text" name="data[company]" value="" class="form-control" placeholder="Company Name">
+                <input type="text" name="company" value="" class="form-control" placeholder="Company">
               </div>
             </div>
           </div>
@@ -374,20 +384,20 @@
             <div class="formItem col-md-6">
               <label>Category</label>
               <div class="fieldArea">
-                <input type="text" name="data[category]" value="" class="form-control" placeholder="Category Name">
+                <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
               </div>
             </div>
             <div class="formItem col-md-6">
               <label>Country</label>
               <div class="fieldArea">
-                <input type="text" name="data[country]" value="" class="form-control" placeholder="Country">
+                <input type="text" name="country" value="" class="form-control" placeholder="Country">
               </div>
             </div>
           </div>
           <div class="formItem">
             <label>Address</label>
             <div class="fieldArea">
-              <input type="text" name="data[address]" value="" class="form-control" placeholder="Address">
+              <input type="text" name="address" value="" class="form-control" placeholder="Address">
             </div>
           </div>
           <div class="formItem">
@@ -398,6 +408,15 @@
       </div>
     </div>
   </div>
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
 </body>
 
 </html>

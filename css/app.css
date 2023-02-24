@@ -10102,7 +10102,7 @@ table tbody tr.data-row-paused * {
   transition: all 0.1s;
   background-image: url(../images/dashboard.png);
 }
-.mailer-icon.contacts {
+/* .mailer-icon.contacts {
   background-image: url(../images/contacts.png);
 }
 .mailer-icon.newsletter {
@@ -10122,7 +10122,7 @@ table tbody tr.data-row-paused * {
 }
 .mailer-icon.settings {
   background-image: url(/images/settings.png?acced8376548719a13b96dd020053dcb);
-}
+} */
 .mailer-icon.delete {
   background-image: url(../images/delete.png);
 }
