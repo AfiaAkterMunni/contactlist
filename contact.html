@@ -67,6 +67,7 @@
               Add New
             </div>
           </a>
+
         </h2>
         <div class="loader" onclick="sysnData()">
           <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
@@ -83,6 +84,23 @@
             <span class="searchCancel" onclick="searchCancel(event)">×</span>
             <input type="text" onkeyup="searchData(event)" placeholder="Search" class="searchInput form-control">
           </div>
+        </div>
+        <div>
+          <a href="#" class="btn btn_a">
+            <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
+              <title>Download</title>
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M2.5 14.75h11V16h-11zm.39-5.45 4.27 3.88a1.26 1.26 0 0 0 1.68 0l4.27-3.88a1.25 1.25 0 0 0-.84-2.18H9.8V1.25A1.25 1.25 0 0 0 8.55 0h-1.1A1.25 1.25 0 0 0 6.2 1.25v5.87H3.73a1.25 1.25 0 0 0-.84 2.18zm.84-.93h3.72V1.25h1.1v7.12h3.72L8 12.25 3.73 8.37z">
+                </path>
+              </g>
+            </svg>
+            <div class="add-label">
+              Download
+            </div>
+          </a>
         </div>
         <div class="header-right sm-none">
           <!-- Right -->
@@ -163,8 +181,8 @@
                       <thead>
                         <tr>
                           <th class="bulk-action-th" width="2%">
-                            <input value="" type="checkbox" id="allSelect" class="styled-checkbox"><label
-                              class="checkbox-custom-label" for="allSelect"></label>
+                            <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
+                            <label class="checkbox-custom-label" for="allSelect"></label>
                           </th>
                           <th class="col-company" width="20%">
                             <div class="table-header-item">
@@ -206,9 +224,10 @@
                       </thead>
                       <tbody id="dataTableBody">
                         <tr class="data-row-item">
-                          <td class="bulk-action-td" width="2%"><input value="10" type="checkbox"
-                              class="styled-checkbox data-check" id="dataCheck10"><label class="checkbox-custom-label"
-                              for="dataCheck10"></label></td>
+                          <td class="bulk-action-td" width="2%">
+                            <input value="10" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
+                            <label class="checkbox-custom-label" for="dataCheck10"></label>
+                          </td>
                           <td class="col-company">Franz Barta GmbH</td>
                           <td class="col-name"><span title="Contact Lists : ">Franz Barta GmbH</span></td>
                           <td class="col-email">office@barta.at</td>
@@ -242,11 +261,14 @@
                           </td>
                         </tr>
                         <tr class="data-row-item">
-                          <td class="bulk-action-td" width="2%"><input value="8" type="checkbox"
-                              class="styled-checkbox data-check" id="dataCheck8"><label class="checkbox-custom-label"
-                              for="dataCheck8"></label></td>
+                          <td class="bulk-action-td" width="2%">
+                            <input value="8" type="checkbox" class="styled-checkbox data-check" id="dataCheck8">
+                            <label class="checkbox-custom-label" for="dataCheck8"></label>
+                          </td>
                           <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
-                          <td class="col-name"><span title="Contact Lists : ">R*CONCEPT by Ferrer-Dalmau</span></td>
+                          <td class="col-name">
+                            <span title="Contact Lists : ">R*CONCEPT by Ferrer-Dalmau</span>
+                          </td>
                           <td class="col-email">wer@livingrconcept.com</td>
                           <td class="col-phone">+34 93 4874015</td>
                           <td class="col-category">Apparel</td>
@@ -419,6 +441,20 @@
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
     }
+
+    let check = document.getElementById('allSelect');
+    check.addEventListener('click', function() {
+      let checkboxes = document.getElementsByClassName('data-check');
+      let n = checkboxes.length;
+      // checkboxes.forEach((checkbox) => {
+      //   checkbox.checked = check.checked;
+      // });
+      for (let i = 0; i < n; i++) {
+        checkboxes[i].checked = check.checked;
+      }
+      
+    });
+    
   </script>
 </body>
 
