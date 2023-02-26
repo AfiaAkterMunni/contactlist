@@ -106,6 +106,13 @@ body,
 .module-header .loader.loading .ionicon * {
   stroke: #257fb3;
 }
+
+.module-header .download {
+  position: absolute;
+  right: 80px;
+  top: 10px;
+  cursor: pointer;
+}
 .module-header .header-right .dropdown-toggle.nav-link {
   margin: 0;
   padding: 0;
@@ -1038,6 +1045,9 @@ input[type=date] {
     height: 50px;
     border: 5px solid #f8fafc;
     z-index: 1;
+  }
+  .download .btn.btn_a{
+    right: 80px;
   }
   .btn.btn_a svg {
     width: 56px;

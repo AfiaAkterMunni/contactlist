@@ -69,7 +69,7 @@
           </a>
 
         </h2>
-        <div class="loader" onclick="sysnData()">
+        <div class="loader">
           <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
             <title>Sync</title>
             <path
@@ -85,7 +85,7 @@
             <input type="text" onkeyup="searchData(event)" placeholder="Search" class="searchInput form-control">
           </div>
         </div>
-        <div>
+        <div class="download">
           <a href="#" class="btn btn_a">
             <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
               <title>Download</title>
@@ -119,8 +119,7 @@
                 </svg>
               </a>
               <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink" id="myDropdown">
-                <a class="dropdown-item" href="#"
-                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                <a class="dropdown-item" href="#">Logout</a>
               </div>
             </li>
           </ul>
@@ -446,13 +445,9 @@
     check.addEventListener('click', function() {
       let checkboxes = document.getElementsByClassName('data-check');
       let n = checkboxes.length;
-      // checkboxes.forEach((checkbox) => {
-      //   checkbox.checked = check.checked;
-      // });
       for (let i = 0; i < n; i++) {
         checkboxes[i].checked = check.checked;
       }
-      
     });
     
   </script>
