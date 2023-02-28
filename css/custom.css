@@ -629,9 +629,10 @@ form .newsletter-name {
 
 .custom-select {
   font-size: 14px;
-  padding: 4px;
+  padding-left: 10px;
+  padding-top: 0px;
   height: 30px;
-  line-height: 0;
+  /* line-height: 0; */
 }
 
 .formItem {
