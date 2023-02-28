@@ -224,7 +224,7 @@
                       <tbody id="dataTableBody">
                         <tr class="data-row-item">
                           <td class="bulk-action-td" width="2%">
-                            <input value="10" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
+                            <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
                             <label class="checkbox-custom-label" for="dataCheck10"></label>
                           </td>
                           <td class="col-company">Franz Barta GmbH</td>
@@ -242,7 +242,7 @@
                           </td>
                         </tr>
                         <tr class="data-row-item">
-                          <td class="bulk-action-td" width="2%"><input value="9" type="checkbox"
+                          <td class="bulk-action-td" width="2%"><input value="2" type="checkbox"
                               class="styled-checkbox data-check" id="dataCheck9"><label class="checkbox-custom-label"
                               for="dataCheck9"></label></td>
                           <td class="col-company">The Woolmark Company</td>
@@ -261,7 +261,7 @@
                         </tr>
                         <tr class="data-row-item">
                           <td class="bulk-action-td" width="2%">
-                            <input value="8" type="checkbox" class="styled-checkbox data-check" id="dataCheck8">
+                            <input value="3" type="checkbox" class="styled-checkbox data-check" id="dataCheck8">
                             <label class="checkbox-custom-label" for="dataCheck8"></label>
                           </td>
                           <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
@@ -281,7 +281,7 @@
                           </td>
                         </tr>
                         <tr class="data-row-item">
-                          <td class="bulk-action-td" width="2%"><input value="7" type="checkbox"
+                          <td class="bulk-action-td" width="2%"><input value="4" type="checkbox"
                               class="styled-checkbox data-check" id="dataCheck7"><label class="checkbox-custom-label"
                               for="dataCheck7"></label></td>
                           <td class="col-company">SmartSports4GoodLife</td>
@@ -299,7 +299,7 @@
                           </td>
                         </tr>
                         <tr class="data-row-item">
-                          <td class="bulk-action-td" width="2%"><input value="6" type="checkbox"
+                          <td class="bulk-action-td" width="2%"><input value="5" type="checkbox"
                               class="styled-checkbox data-check" id="dataCheck6"><label class="checkbox-custom-label"
                               for="dataCheck6"></label></td>
                           <td class="col-company">FOOTBALL FACTORY - Mariánské Hory-Ostrava</td>
@@ -320,15 +320,19 @@
                     </table>
                   </div>
                   <div class="data-controller-wrap">
-                    <div class="bulk-action-wrapper"><select class="bulk-action custom-select custom-select-sm"
-                        id="bulk_action">
+                    <div class="bulk-action-wrapper">
+                      <select class="bulk-action custom-select custom-select-sm" id="bulk_action">
                         <option value="delete">Delete Selected</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
-                      </select><button class="bulk-action-btn" id="bulk_action_btn">Apply</button></div>
+                      </select>
+                      <button class="bulk-action-btn" id="bulk_action_btn">Apply</button>
+                    </div>
                     <div class="item-per-page">
-                      <div class="item-per-page-toggle"><label>Per Page </label><input type="number" id="ippIn"
-                          min="1"><span></span></div>
+                      <div class="item-per-page-toggle">
+                        <label>Per Page </label>
+                        <input type="number" id="ippIn" min="1"><span></span>
+                      </div>
                       <ul id="ippList">
                         <li>22</li>
                         <li>50</li>
@@ -443,14 +447,27 @@
     }
 
     let check = document.getElementById('allSelect');
-    check.addEventListener('click', function() {
+    check.addEventListener('click', function () {
       let checkboxes = document.getElementsByClassName('data-check');
       let n = checkboxes.length;
       for (let i = 0; i < n; i++) {
         checkboxes[i].checked = check.checked;
       }
     });
-    
+
+    let deletedata = document.getElementById('bulk_action_btn');
+    deletedata.addEventListener('click', function () {
+      let selectitems = document.getElementsByClassName('data-check');
+      let n = selectitems.length;
+      for (let i = 0; i < n; i++) {
+        if (selectitems[i].checked == true) {
+          console.log(selectitems[i].value);
+        }
+      }
+    });
+    // console.log(selectitems);
+
+
   </script>
 </body>
 
