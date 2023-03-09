@@ -58,13 +58,14 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink" id="myDropdown">
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                     </div>
                 </li>
             </ul>
 
-            <form id="logout-form" action="#" method="POST" class="d-none">
-                <input type="hidden" name="_token" value="">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
             </form>
         </div>
     </div>
