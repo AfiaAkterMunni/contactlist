@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::middleware('auth')->group(function(){
-    Route::get('/', function () {
-        return view('pages.contact');
-    })->name('contact');
+    Route::get('/', [ContactController::class, 'show'])->name('contact');
 });
 
 
