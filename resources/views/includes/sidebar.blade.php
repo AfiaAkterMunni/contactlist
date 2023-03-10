@@ -2,13 +2,13 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
         <div class="brand_logo_div fixed-brand">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{{route('contact')}}">
             <h5 class="brand_logo">Contact<span>List</span></h5>
           </a>
         </div>
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
           <li class="active">
-            <a href="#">
+            <a href="{{route('contact')}}">
               <span class="menu_ic">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                   <path

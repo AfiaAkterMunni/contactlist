@@ -8,13 +8,13 @@ body {
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
-  border: 2px solid #0f0f0f;
+  border: 2px solid #41608f;
   border-radius: 3px;
 }
 
 .login-card-left {
   width: 270px;
-  background: #0f0f0f;
+  background: #41608f;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -57,7 +57,7 @@ body {
   border-radius: 0;
   border: 1px solid #0f0f0f;
   margin-right: 15px;
-  background: #464646;
+  background: #41608f;
   color: #fff;
 }
 
