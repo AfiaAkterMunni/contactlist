@@ -5,16 +5,24 @@
         <h2 class="currentModule">
             <div class="page-icon"><i class="mailer-icon"></i></div>
             Contact
-            <a href="#" class="popup btn btn_a" data-w="750" onclick="openForm()">
+            <a href="#" class="popup btn btn_a" data-w="750" onclick="openContactForm()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                    <title>Add New</title>
+                    <title>Add Contact</title>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"></path>
                 </svg>
                 <div class="add-label">
-                    Add New
+                    Add Contact
                 </div>
             </a>
-
+            <a href="#" class="popup btn btn_a" data-w="750" onclick="openCategoryForm()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <title>Add Category</title>
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"></path>
+                </svg>
+                <div class="add-label">
+                    Add Category
+                </div>
+            </a>
         </h2>
         <div class="loader">
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
@@ -273,9 +281,9 @@
     </div>
 </div>
 
-<!-- ADD NEW POP UP DESIGN -->
-<div class="popup-wrap" id="myForm" style="display: none;">
-    <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeForm()"></span>
+<!-- ADD CONTACT POP UP DESIGN -->
+<div class="popup-wrap" id="myContactForm" style="display: none;">
+    <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactForm()"></span>
         <div class="popup-inner">
             <form class="ajx" action="">
                 <div class="row">
@@ -296,7 +304,7 @@
                     <div class="formItem col-md-6">
                         <label>Mobile</label>
                         <div class="fieldArea">
-                            <input type="number" name="mobile" value="" class="form-control" placeholder="Mobile Number">
+                            <input type="text" name="mobile" value="" class="form-control" placeholder="Mobile Number">
                         </div>
                     </div>
                     <div class="formItem col-md-6">
@@ -348,14 +356,52 @@
         </div>
     </div>
 </div>
+
+
+<!-- ADD CATEGORY POP UP DESIGN -->
+<div class="popup-wrap" id="myCategoryForm" style="display: none;">
+    <div class="popup-body " style="width:550px"><span class="closePopup" onclick="closeCategoryForm()"></span>
+        <div class="popup-inner">
+            <form class="ajx" action="">
+                <div class="formItem">
+                    <label class="mr-2">Category Name</label>
+                    <div class="fieldArea">
+                        <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
+                    </div>
+                </div>
+                <div class="formItem">
+                    <label class="mr-5"></label>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script>
-    function openForm() {
-      document.getElementById("myForm").style.display = "block";
+
+    // contact popup open
+    function openContactForm() {
+      document.getElementById("myContactForm").style.display = "block";
     }
 
-    function closeForm() {
-      document.getElementById("myForm").style.display = "none";
+    // contact popup close
+    function closeContactForm() {
+      document.getElementById("myContactForm").style.display = "none";
     }
+
+    // category popup open
+    function openCategoryForm() {
+      document.getElementById("myCategoryForm").style.display = "block";
+    }
+
+    // category popup close
+    function closeCategoryForm() {
+      document.getElementById("myCategoryForm").style.display = "none";
+    }
+
+    //logout dropdown
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
       document.getElementById("myDropdown").style = "position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;";
