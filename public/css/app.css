@@ -10101,6 +10101,7 @@ table tbody tr.data-row-paused * {
   transition: all 0.1s;
   background-image: url(../images/dashboard.png);
 }
+
 /* .mailer-icon.contacts {
   background-image: url(../images/contacts.png);
 }

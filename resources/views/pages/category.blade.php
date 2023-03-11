@@ -4,14 +4,14 @@
     <div class="module-header">
         <h2 class="currentModule">
             <div class="page-icon"><i class="mailer-icon"></i></div>
-            Contact
-            <a href="#" class="popup btn btn_a" data-w="750" onclick="openContactForm()">
+            Categories
+            <a href="#" class="popup btn btn_a" data-w="750" onclick="openCategoryForm()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                    <title>Add Contact</title>
+                    <title>Add Category</title>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"></path>
                 </svg>
                 <div class="add-label">
-                    Add Contact
+                    Add Category
                 </div>
             </a>
         </h2>
@@ -27,22 +27,6 @@
                 <span class="searchCancel" onclick="searchCancel(event)">×</span>
                 <input type="text" onkeyup="searchData(event)" placeholder="Search" class="searchInput form-control">
             </div>
-        </div>
-        <div class="download">
-            <a href="#" class="btn btn_a">
-                <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
-                    <title>Download</title>
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M2.5 14.75h11V16h-11zm.39-5.45 4.27 3.88a1.26 1.26 0 0 0 1.68 0l4.27-3.88a1.25 1.25 0 0 0-.84-2.18H9.8V1.25A1.25 1.25 0 0 0 8.55 0h-1.1A1.25 1.25 0 0 0 6.2 1.25v5.87H3.73a1.25 1.25 0 0 0-.84 2.18zm.84-.93h3.72V1.25h1.1v7.12h3.72L8 12.25 3.73 8.37z">
-                        </path>
-                    </g>
-                </svg>
-                <div class="add-label">
-                    Download
-                </div>
-            </a>
         </div>
         <div class="header-right sm-none">
             <!-- Right -->
@@ -272,76 +256,21 @@
     </div>
 </div>
 
-<!-- ADD CONTACT POP UP DESIGN -->
-<div class="popup-wrap" id="myContactForm" style="display: none;">
-    <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactForm()"></span>
+
+<!-- ADD CATEGORY POP UP DESIGN -->
+<div class="popup-wrap" id="myCategoryForm" style="display: none;">
+    <div class="popup-body " style="width:550px"><span class="closePopup" onclick="closeCategoryForm()"></span>
         <div class="popup-inner">
             <form class="ajx" action="">
-                <div class="row">
-                    <div class="formItem col-md-6">
-                        <label>Name</label>
-                        <div class="fieldArea">
-                            <input type="text" name="name" value="" class="form-control" placeholder="Name">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
-                        <label>Email</label>
-                        <div class="fieldArea">
-                            <input type="email" name="email" value="" class="form-control" placeholder="Email Address">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="formItem col-md-6">
-                        <label>Mobile</label>
-                        <div class="fieldArea">
-                            <input type="text" name="mobile" value="" class="form-control" placeholder="Mobile Number">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
-                        <label>Phone</label>
-                        <div class="fieldArea">
-                            <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="formItem col-md-6">
-                        <label>Website</label>
-                        <div class="fieldArea">
-                            <input type="text" name="website" value="" class="form-control" placeholder="Website">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
-                        <label>Company</label>
-                        <div class="fieldArea">
-                            <input type="text" name="company" value="" class="form-control" placeholder="Company">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="formItem col-md-6">
-                        <label>Category</label>
-                        <div class="fieldArea">
-                            <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
-                        <label>Country</label>
-                        <div class="fieldArea">
-                            <input type="text" name="country" value="" class="form-control" placeholder="Country">
-                        </div>
-                    </div>
-                </div>
                 <div class="formItem">
-                    <label>Address</label>
+                    <label class="mr-2">Category Name</label>
                     <div class="fieldArea">
-                        <input type="text" name="address" value="" class="form-control" placeholder="Address">
+                        <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
                     </div>
                 </div>
                 <div class="formItem">
-                    <label></label>
-                    <button type="submit" class="btn btn-primary mailer-primary-btn">Save</button>
+                    <label class="mr-5"></label>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Save</button>
                 </div>
             </form>
         </div>
@@ -351,14 +280,14 @@
 
 <script>
 
-    // contact popup open
-    function openContactForm() {
-      document.getElementById("myContactForm").style.display = "block";
+    // category popup open
+    function openCategoryForm() {
+      document.getElementById("myCategoryForm").style.display = "block";
     }
 
-    // contact popup close
-    function closeContactForm() {
-      document.getElementById("myContactForm").style.display = "none";
+    // category popup close
+    function closeCategoryForm() {
+      document.getElementById("myCategoryForm").style.display = "none";
     }
 
     //logout dropdown

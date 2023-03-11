@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::middleware('auth')->group(function(){
     Route::get('/', [ContactController::class, 'show'])->name('contact');
+    Route::get('/categories', [CategoryController::class, 'show'])->name('categories');
+
 });
 
 
