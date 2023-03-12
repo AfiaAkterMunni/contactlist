@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Categories')
 @section('content')
+
 <div class="content-area">
     <div class="module-header">
         <h2 class="currentModule">
@@ -42,8 +43,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink" id="myDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -85,6 +85,12 @@
             </div>
         </div>
     </div>
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible mb-0" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('success') }}
+    </div>
+    @endif
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
@@ -142,7 +148,7 @@
                                                 <label class="checkbox-custom-label" for="dataCheck8"></label>
                                             </td>
                                             <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
-                                            
+
                                             <td class="col-category">Apparel</td>
                                             <td>
                                                 <div class="data-action"><a data-w="750" href="/contact/edit/8" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/8" class="action-delete "><i class="mailer-icon delete"></i></a>
@@ -214,13 +220,18 @@
 <div class="popup-wrap" id="myCategoryForm" style="display: none;">
     <div class="popup-body " style="width:550px"><span class="closePopup" onclick="closeCategoryForm()"></span>
         <div class="popup-inner">
-            <form class="ajx" action="">
+            <form class="ajx" method="POST" action="{{route('category.store')}}">
+                @csrf
                 <div class="formItem">
                     <label class="mr-2">Category Name</label>
                     <div class="fieldArea">
-                        <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
+                        <input type="text" name="name" value="" class="form-control" placeholder="Category Name" required>
                     </div>
                 </div>
+                @error('name')
+                <p class="alert alert-danger">{{ $message }}</p>
+                @enderror
+
                 <div class="formItem">
                     <label class="mr-5"></label>
                     <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Save</button>
@@ -232,44 +243,41 @@
 
 
 <script>
-
     // category popup open
     function openCategoryForm() {
-      document.getElementById("myCategoryForm").style.display = "block";
+        document.getElementById("myCategoryForm").style.display = "block";
     }
 
     // category popup close
     function closeCategoryForm() {
-      document.getElementById("myCategoryForm").style.display = "none";
+        document.getElementById("myCategoryForm").style.display = "none";
     }
 
     //logout dropdown
     function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-      document.getElementById("myDropdown").style = "position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;";
+        document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("myDropdown").style = "position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;";
     }
 
     let check = document.getElementById('allSelect');
-    check.addEventListener('click', function () {
-      let checkboxes = document.getElementsByClassName('data-check');
-      let n = checkboxes.length;
-      for (let i = 0; i < n; i++) {
-        checkboxes[i].checked = check.checked;
-      }
+    check.addEventListener('click', function() {
+        let checkboxes = document.getElementsByClassName('data-check');
+        let n = checkboxes.length;
+        for (let i = 0; i < n; i++) {
+            checkboxes[i].checked = check.checked;
+        }
     });
 
     let deletedata = document.getElementById('bulk_action_btn');
-    deletedata.addEventListener('click', function () {
-      let selectitems = document.getElementsByClassName('data-check');
-      let n = selectitems.length;
-      for (let i = 0; i < n; i++) {
-        if (selectitems[i].checked == true) {
-          console.log(selectitems[i].value);
+    deletedata.addEventListener('click', function() {
+        let selectitems = document.getElementsByClassName('data-check');
+        let n = selectitems.length;
+        for (let i = 0; i < n; i++) {
+            if (selectitems[i].checked == true) {
+                console.log(selectitems[i].value);
+            }
         }
-      }
     });
     // console.log(selectitems);
-
-
-  </script>
+</script>
 @endsection
