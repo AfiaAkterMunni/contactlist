@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Categories')
 @section('content')
 <div class="content-area">
     <div class="module-header">
@@ -98,39 +99,14 @@
                                                 <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
                                                 <label class="checkbox-custom-label" for="allSelect"></label>
                                             </th>
-                                            <th class="col-company" width="20%">
+                                            <th class="col-company" width="45%">
                                                 <div class="table-header-item">
-                                                    <div class="headItem">Company Name</div>
+                                                    <div class="headItem">Category Name</div>
                                                 </div>
                                             </th>
-                                            <th class="col-name" width="15%">
+                                            <th class="col-name" width="45%">
                                                 <div class="table-header-item">
-                                                    <div class="headItem">Name</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-email" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Email</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-phone" width="10%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Mobile No</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-category" width="8%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Category</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-address" width="20%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Address</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-country" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Country</div>
+                                                    <div class="headItem">Created By</div>
                                                 </div>
                                             </th>
                                             <th>Action</th>
@@ -142,26 +118,19 @@
                                                 <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
                                                 <label class="checkbox-custom-label" for="dataCheck10"></label>
                                             </td>
-                                            <td class="col-company">Franz Barta GmbH</td>
+                                            <td class="col-company">T-shirt</td>
                                             <td class="col-name"><span title="Contact Lists : ">Franz Barta GmbH</span></td>
-                                            <td class="col-email">office@barta.at</td>
-                                            <td class="col-phone">+43 1 8946894</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">Austria</td>
                                             <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a></div>
+                                                <div class="data-action">
+                                                    <a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a>
+                                                    <a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr class="data-row-item">
                                             <td class="bulk-action-td" width="2%"><input value="2" type="checkbox" class="styled-checkbox data-check" id="dataCheck9"><label class="checkbox-custom-label" for="dataCheck9"></label></td>
-                                            <td class="col-company">The Woolmark Company</td>
-                                            <td class="col-name"><span title="Contact Lists : ">The Woolmark Company</span></td>
-                                            <td class="col-email">trade-extension@wool.com</td>
-                                            <td class="col-phone">+61 2 8295310-0</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">Australia</td>
+                                            <td class="col-company">Polo</td>
+                                            <td class="col-name"><span title="Contact Lists : "> Woolmark </span></td>
                                             <td>
                                                 <div class="data-action"><a data-w="750" href="/contact/edit/9" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/9" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
@@ -173,14 +142,8 @@
                                                 <label class="checkbox-custom-label" for="dataCheck8"></label>
                                             </td>
                                             <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
-                                            <td class="col-name">
-                                                <span title="Contact Lists : ">R*CONCEPT by Ferrer-Dalmau</span>
-                                            </td>
-                                            <td class="col-email">wer@livingrconcept.com</td>
-                                            <td class="col-phone">+34 93 4874015</td>
+                                            
                                             <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">&ZeroWidthSpace;&ZeroWidthSpace;Spain</td>
                                             <td>
                                                 <div class="data-action"><a data-w="750" href="/contact/edit/8" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/8" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
@@ -189,12 +152,7 @@
                                         <tr class="data-row-item">
                                             <td class="bulk-action-td" width="2%"><input value="4" type="checkbox" class="styled-checkbox data-check" id="dataCheck7"><label class="checkbox-custom-label" for="dataCheck7"></label></td>
                                             <td class="col-company">SmartSports4GoodLife</td>
-                                            <td class="col-name"><span title="Contact Lists : ">SmartSports4GoodLife</span></td>
-                                            <td class="col-email">mcentellas@indescat.org</td>
-                                            <td class="col-phone">+34 93 7824474</td>
-                                            <td class="col-category">Apparel</td>
                                             <td class="col-address">null</td>
-                                            <td class="col-country">&ZeroWidthSpace;&ZeroWidthSpace;Spain</td>
                                             <td>
                                                 <div class="data-action"><a data-w="750" href="/contact/edit/7" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/7" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
@@ -203,11 +161,6 @@
                                         <tr class="data-row-item">
                                             <td class="bulk-action-td" width="2%"><input value="5" type="checkbox" class="styled-checkbox data-check" id="dataCheck6"><label class="checkbox-custom-label" for="dataCheck6"></label></td>
                                             <td class="col-company">FOOTBALL FACTORY - Mariánské Hory-Ostrava</td>
-                                            <td class="col-name"><span title="Contact Lists : ">Zoncolan s.r.o.</span></td>
-                                            <td class="col-email">info@arsyline.cz</td>
-                                            <td class="col-phone">+420 603 918 478</td>
-                                            <td class="col-category">Promo</td>
-                                            <td class="col-address">Mojmírovců 200/8 709 00 Ostrava-Marianske Hory, CZ</td>
                                             <td class="col-country">CZECH REPUBLIC</td>
                                             <td>
                                                 <div class="data-action"><a data-w="750" href="/contact/edit/6" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/6" class="action-delete "><i class="mailer-icon delete"></i></a>

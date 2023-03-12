@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Contact')
 @section('content')
 <div class="content-area">
     <div class="module-header">
