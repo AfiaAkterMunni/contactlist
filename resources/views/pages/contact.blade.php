@@ -324,7 +324,12 @@
                     <div class="formItem col-md-6">
                         <label>Category</label>
                         <div class="fieldArea">
-                            <input type="text" name="category" value="" class="form-control" placeholder="Category Name">
+                            <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                                <option disabled selected>-- Select Contact Category --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="formItem col-md-6">
