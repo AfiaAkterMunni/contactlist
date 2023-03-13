@@ -10,7 +10,9 @@ class CategoryController extends Controller
 {
     public function show()
     {
-        return view('pages.category');
+        $categories = category::with('user')->get();
+        // dd($categories);
+        return view('pages.category', ['categories' => $categories]);
     }
     public function store(StoreCategoryRequest $request)
     {
@@ -19,6 +21,6 @@ class CategoryController extends Controller
             'created_by' => Auth::id()
         ];
         category::create($data);
-        return redirect(url('/categories'))->with('success', 'Data Stored Successfully!');
+        return redirect(url('/categories'))->with('success', 'Category Added Successfully!');
     }
 }

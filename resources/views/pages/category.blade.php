@@ -105,12 +105,17 @@
                                                 <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
                                                 <label class="checkbox-custom-label" for="allSelect"></label>
                                             </th>
-                                            <th class="col-company" width="45%">
+                                            <th class="col-company" width="10%">
+                                                <div class="table-header-item">
+                                                    <div class="headItem">#</div>
+                                                </div>
+                                            </th>
+                                            <th class="col-company" width="40%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">Category Name</div>
                                                 </div>
                                             </th>
-                                            <th class="col-name" width="45%">
+                                            <th class="col-name" width="40%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">Created By</div>
                                                 </div>
@@ -119,60 +124,22 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%">
-                                                <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
-                                                <label class="checkbox-custom-label" for="dataCheck10"></label>
-                                            </td>
-                                            <td class="col-company">T-shirt</td>
-                                            <td class="col-name"><span title="Contact Lists : ">Franz Barta GmbH</span></td>
-                                            <td>
-                                                <div class="data-action">
-                                                    <a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a>
-                                                    <a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="2" type="checkbox" class="styled-checkbox data-check" id="dataCheck9"><label class="checkbox-custom-label" for="dataCheck9"></label></td>
-                                            <td class="col-company">Polo</td>
-                                            <td class="col-name"><span title="Contact Lists : "> Woolmark </span></td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/9" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/9" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%">
-                                                <input value="3" type="checkbox" class="styled-checkbox data-check" id="dataCheck8">
-                                                <label class="checkbox-custom-label" for="dataCheck8"></label>
-                                            </td>
-                                            <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
-
-                                            <td class="col-category">Apparel</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/8" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/8" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="4" type="checkbox" class="styled-checkbox data-check" id="dataCheck7"><label class="checkbox-custom-label" for="dataCheck7"></label></td>
-                                            <td class="col-company">SmartSports4GoodLife</td>
-                                            <td class="col-address">null</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/7" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/7" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="5" type="checkbox" class="styled-checkbox data-check" id="dataCheck6"><label class="checkbox-custom-label" for="dataCheck6"></label></td>
-                                            <td class="col-company">FOOTBALL FACTORY - Mariánské Hory-Ostrava</td>
-                                            <td class="col-country">CZECH REPUBLIC</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/6" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/6" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($categories as $key => $category)  
+                                            <tr class="data-row-item">
+                                                <td class="bulk-action-td" width="2%">
+                                                    <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
+                                                    <label class="checkbox-custom-label" for="dataCheck10"></label>
+                                                </td>
+                                                <td class="col-company">{{$key + 1}}</td>
+                                                <td class="col-company">{{$category->name}}</td>
+                                                <td class="col-name"><span title="Contact Lists : ">{{$category->user->name}}</span></td>
+                                                <td>
+                                                    <div class="data-action">
+                                                        <a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
