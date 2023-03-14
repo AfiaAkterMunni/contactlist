@@ -20,6 +20,7 @@ class ContactController extends Controller
 
     public function store(StoreContactRequest $request)
     {
+        $emails = $request->emails;
         $data = [
             'name' => $request->input('name'),
             'mobile' => $request->input('mobile'),
@@ -31,12 +32,14 @@ class ContactController extends Controller
             'address' => $request->input('address'),
             'created_by' => Auth::id()
         ];
-        dd($data);
         $contact = Contact::create($data);
-        Email::create([
-            'email' => $request->input('email'),
-            'contact_id' => $contact->id
-        ]);
+        foreach($emails as $email)
+        {
+            Email::create([
+                'email' => $email,
+                'contact_id' => $contact->id
+            ]);
+        }
         return redirect(url('/'))->with('success', 'Contact Added Successfully!');
     }
 }

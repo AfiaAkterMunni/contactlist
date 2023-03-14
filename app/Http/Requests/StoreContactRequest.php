@@ -21,16 +21,22 @@ class StoreContactRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->merge([
+            'emails' => isset($this->emails) ? explode(',', str_replace(' ', '', $this->emails)) : null,
+        ]);
         return [
+            
             'name' => 'string|nullable',
-            'email' => 'required|email|unique:emails,email',
+            'emails' => 'required|array|min:1',
+            'emails.*' => 'email|unique:emails,email',
             'mobile' => 'numeric|nullable',
             'phone' => 'numeric|nullable',
             'website' => 'string|nullable',
             'company' => 'string|nullable',
-            'category' => 'numeric|nullable',
+            'category' => 'required|numeric|nullable',
             'country' => 'string|nullable',
             'address' => 'string|nullable'
         ];
     }
+
 }

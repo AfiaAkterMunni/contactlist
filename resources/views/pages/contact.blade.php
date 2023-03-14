@@ -112,7 +112,13 @@
         <p>{{ $message }}</p>
     </div>
     @enderror
-    @error('email')
+    @error('emails')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('emails.*')
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
@@ -296,7 +302,7 @@
                     <div class="formItem col-md-6">
                         <label>Email</label>
                         <div class="fieldArea">
-                            <input type="email" name="email" value="" class="form-control" placeholder="Email Address">
+                            <input type="text" name="emails" value="" class="form-control" placeholder="Email Address">
                         </div>
                     </div>
                 </div>
