@@ -58,8 +58,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu drop_manu" aria-labelledby="navbarDropdownMenuLink" id="myDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -101,6 +100,66 @@
             </div>
         </div>
     </div>
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible mb-0" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('success') }}
+    </div>
+    @endif
+    @error('name')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('email')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('mobile')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('phone')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('website')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('company')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('category')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('country')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('address')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
@@ -115,7 +174,7 @@
                                                 <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
                                                 <label class="checkbox-custom-label" for="allSelect"></label>
                                             </th>
-                                            <th class="col-company" width="20%">
+                                            <th class="col-company" width="15%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">Company Name</div>
                                                 </div>
@@ -133,6 +192,11 @@
                                             <th class="col-phone" width="10%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">Mobile No</div>
+                                                </div>
+                                            </th>
+                                            <th class="col-phone" width="10%">
+                                                <div class="table-header-item">
+                                                    <div class="headItem">Phone No</div>
                                                 </div>
                                             </th>
                                             <th class="col-category" width="8%">
@@ -154,83 +218,25 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%">
-                                                <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
-                                                <label class="checkbox-custom-label" for="dataCheck10"></label>
-                                            </td>
-                                            <td class="col-company">Franz Barta GmbH</td>
-                                            <td class="col-name"><span title="Contact Lists : ">Franz Barta GmbH</span></td>
-                                            <td class="col-email">office@barta.at</td>
-                                            <td class="col-phone">+43 1 8946894</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">Austria</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="2" type="checkbox" class="styled-checkbox data-check" id="dataCheck9"><label class="checkbox-custom-label" for="dataCheck9"></label></td>
-                                            <td class="col-company">The Woolmark Company</td>
-                                            <td class="col-name"><span title="Contact Lists : ">The Woolmark Company</span></td>
-                                            <td class="col-email">trade-extension@wool.com</td>
-                                            <td class="col-phone">+61 2 8295310-0</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">Australia</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/9" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/9" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%">
-                                                <input value="3" type="checkbox" class="styled-checkbox data-check" id="dataCheck8">
-                                                <label class="checkbox-custom-label" for="dataCheck8"></label>
-                                            </td>
-                                            <td class="col-company">R*CONCEPT by Ferrer-Dalmau</td>
-                                            <td class="col-name">
-                                                <span title="Contact Lists : ">R*CONCEPT by Ferrer-Dalmau</span>
-                                            </td>
-                                            <td class="col-email">wer@livingrconcept.com</td>
-                                            <td class="col-phone">+34 93 4874015</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">&ZeroWidthSpace;&ZeroWidthSpace;Spain</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/8" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/8" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="4" type="checkbox" class="styled-checkbox data-check" id="dataCheck7"><label class="checkbox-custom-label" for="dataCheck7"></label></td>
-                                            <td class="col-company">SmartSports4GoodLife</td>
-                                            <td class="col-name"><span title="Contact Lists : ">SmartSports4GoodLife</span></td>
-                                            <td class="col-email">mcentellas@indescat.org</td>
-                                            <td class="col-phone">+34 93 7824474</td>
-                                            <td class="col-category">Apparel</td>
-                                            <td class="col-address">null</td>
-                                            <td class="col-country">&ZeroWidthSpace;&ZeroWidthSpace;Spain</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/7" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/7" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%"><input value="5" type="checkbox" class="styled-checkbox data-check" id="dataCheck6"><label class="checkbox-custom-label" for="dataCheck6"></label></td>
-                                            <td class="col-company">FOOTBALL FACTORY - Mariánské Hory-Ostrava</td>
-                                            <td class="col-name"><span title="Contact Lists : ">Zoncolan s.r.o.</span></td>
-                                            <td class="col-email">info@arsyline.cz</td>
-                                            <td class="col-phone">+420 603 918 478</td>
-                                            <td class="col-category">Promo</td>
-                                            <td class="col-address">Mojmírovců 200/8 709 00 Ostrava-Marianske Hory, CZ</td>
-                                            <td class="col-country">CZECH REPUBLIC</td>
-                                            <td>
-                                                <div class="data-action"><a data-w="750" href="/contact/edit/6" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/6" class="action-delete "><i class="mailer-icon delete"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($contacts as $contact)   
+                                            <tr class="data-row-item">
+                                                <td class="bulk-action-td" width="2%">
+                                                    <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
+                                                    <label class="checkbox-custom-label" for="dataCheck10"></label>
+                                                </td>
+                                                <td class="col-company">{{$contact->company}}</td>
+                                                <td class="col-name">{{$contact->name}}</td>
+                                                <td class="col-email"></td>
+                                                <td class="col-phone">{{$contact->mobile}}</td>
+                                                <td class="col-phone">{{$contact->phone}}</td>
+                                                <td class="col-category">{{$contact->category->name}}</td>
+                                                <td class="col-address">{{$contact->address}}</td>
+                                                <td class="col-country">{{$contact->country}}</td>
+                                                <td>
+                                                    <div class="data-action"><a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a></div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -277,7 +283,8 @@
 <div class="popup-wrap" id="myContactForm" style="display: none;">
     <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactForm()"></span>
         <div class="popup-inner">
-            <form class="ajx" action="">
+            <form class="ajx" method="POST" action="{{route('contact.store')}}">
+                @csrf
                 <div class="row">
                     <div class="formItem col-md-6">
                         <label>Name</label>
@@ -285,6 +292,7 @@
                             <input type="text" name="name" value="" class="form-control" placeholder="Name">
                         </div>
                     </div>
+
                     <div class="formItem col-md-6">
                         <label>Email</label>
                         <div class="fieldArea">
@@ -327,7 +335,7 @@
                             <select class="form-control pt-1" name="category" style="font-size: 15px;">
                                 <option disabled selected>-- Select Contact Category --</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -356,44 +364,41 @@
 
 
 <script>
-
     // contact popup open
     function openContactForm() {
-      document.getElementById("myContactForm").style.display = "block";
+        document.getElementById("myContactForm").style.display = "block";
     }
 
     // contact popup close
     function closeContactForm() {
-      document.getElementById("myContactForm").style.display = "none";
+        document.getElementById("myContactForm").style.display = "none";
     }
 
     //logout dropdown
     function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-      document.getElementById("myDropdown").style = "position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;";
+        document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("myDropdown").style = "position: absolute; transform: translate3d(-54px, 20px, 0px); top: 0px; left: 0px; will-change: transform;";
     }
 
     let check = document.getElementById('allSelect');
-    check.addEventListener('click', function () {
-      let checkboxes = document.getElementsByClassName('data-check');
-      let n = checkboxes.length;
-      for (let i = 0; i < n; i++) {
-        checkboxes[i].checked = check.checked;
-      }
+    check.addEventListener('click', function() {
+        let checkboxes = document.getElementsByClassName('data-check');
+        let n = checkboxes.length;
+        for (let i = 0; i < n; i++) {
+            checkboxes[i].checked = check.checked;
+        }
     });
 
     let deletedata = document.getElementById('bulk_action_btn');
-    deletedata.addEventListener('click', function () {
-      let selectitems = document.getElementsByClassName('data-check');
-      let n = selectitems.length;
-      for (let i = 0; i < n; i++) {
-        if (selectitems[i].checked == true) {
-          console.log(selectitems[i].value);
+    deletedata.addEventListener('click', function() {
+        let selectitems = document.getElementsByClassName('data-check');
+        let n = selectitems.length;
+        for (let i = 0; i < n; i++) {
+            if (selectitems[i].checked == true) {
+                console.log(selectitems[i].value);
+            }
         }
-      }
     });
     // console.log(selectitems);
-
-
-  </script>
+</script>
 @endsection

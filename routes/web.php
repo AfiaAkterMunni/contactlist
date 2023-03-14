@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::middleware('auth')->group(function(){
     Route::get('/', [ContactController::class, 'show'])->name('contact');
+    Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/categories', [CategoryController::class, 'show'])->name('categories');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 });

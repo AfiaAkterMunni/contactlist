@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Email extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'contact_id'];
+    protected $fillable = ['email', 'contact_id'];
 
     /**
      * Get the contact that owns the email.
