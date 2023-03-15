@@ -224,24 +224,20 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
-                                        @foreach ($contacts as $contact)   
+                                        @foreach ($emails as $email) 
                                             <tr class="data-row-item">
                                                 <td class="bulk-action-td" width="2%">
                                                     <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
                                                     <label class="checkbox-custom-label" for="dataCheck10"></label>
                                                 </td>
-                                                <td class="col-company">{{$contact->company}}</td>
-                                                <td class="col-name">{{$contact->name}}</td>
-                                                <td class="col-email">
-                                                    @foreach ($contact->emails as $email)
-                                                        <div>{{$email->email}}</div>
-                                                    @endforeach
-                                                </td>
-                                                <td class="col-phone">{{$contact->mobile}}</td>
-                                                <td class="col-phone">{{$contact->phone}}</td>
-                                                <td class="col-category">{{$contact->category->name}}</td>
-                                                <td class="col-address">{{$contact->address}}</td>
-                                                <td class="col-country">{{$contact->country}}</td>
+                                                <td class="col-company">{{$email->contact->company}}</td>
+                                                <td class="col-name">{{$email->contact->name}}</td>
+                                                <td class="col-email">{{$email->email}}</td>
+                                                <td class="col-phone">{{$email->contact->mobile}}</td>
+                                                <td class="col-phone">{{$email->contact->phone}}</td>
+                                                <td class="col-category">{{$email->contact->category->name}}</td>
+                                                <td class="col-address">{{$email->contact->address}}</td>
+                                                <td class="col-country">{{$email->contact->country}}</td>
                                                 <td>
                                                     <div class="data-action"><a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a></div>
                                                 </td>

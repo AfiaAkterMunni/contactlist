@@ -12,9 +12,11 @@ class ContactController extends Controller
 {
     public function show()
     {
-        $contacts = Contact::with('emails')->get();
+        $emails = Email::with('contact')->get();
+        // dd($emails);
+        // $contacts = Contact::with('emails')->get();
         $categories = Category::get();
-        return view('pages.contact', ['categories' => $categories, 'contacts' => $contacts]);
+        return view('pages.contact', ['categories' => $categories, 'emails' => $emails]);
     }
 
     public function store(StoreContactRequest $request)
