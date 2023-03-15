@@ -12,8 +12,7 @@ class ContactController extends Controller
 {
     public function show()
     {
-        $contacts = Contact::get();
-        // dd($contacts); 
+        $contacts = Contact::with('emails')->get();
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'contacts' => $contacts]);
     }

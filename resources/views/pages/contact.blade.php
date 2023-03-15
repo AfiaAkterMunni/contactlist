@@ -232,7 +232,11 @@
                                                 </td>
                                                 <td class="col-company">{{$contact->company}}</td>
                                                 <td class="col-name">{{$contact->name}}</td>
-                                                <td class="col-email"></td>
+                                                <td class="col-email">
+                                                    @foreach ($contact->emails as $email)
+                                                        <div>{{$email->email}}</div>
+                                                    @endforeach
+                                                </td>
                                                 <td class="col-phone">{{$contact->mobile}}</td>
                                                 <td class="col-phone">{{$contact->phone}}</td>
                                                 <td class="col-category">{{$contact->category->name}}</td>
