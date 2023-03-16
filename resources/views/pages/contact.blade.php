@@ -108,61 +108,61 @@
     @endif
     @error('name')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('emails')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('emails.*')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('mobile')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('phone')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('website')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('company')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('category')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('country')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
     @error('address')
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"  style="font-size: 30px;">×</button>
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
         <p>{{ $message }}</p>
     </div>
     @enderror
@@ -224,24 +224,27 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
-                                        @foreach ($emails as $email) 
-                                            <tr class="data-row-item">
-                                                <td class="bulk-action-td" width="2%">
-                                                    <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
-                                                    <label class="checkbox-custom-label" for="dataCheck10"></label>
-                                                </td>
-                                                <td class="col-company">{{$email->contact->company}}</td>
-                                                <td class="col-name">{{$email->contact->name}}</td>
-                                                <td class="col-email">{{$email->email}}</td>
-                                                <td class="col-phone">{{$email->contact->mobile}}</td>
-                                                <td class="col-phone">{{$email->contact->phone}}</td>
-                                                <td class="col-category">{{$email->contact->category->name}}</td>
-                                                <td class="col-address">{{$email->contact->address}}</td>
-                                                <td class="col-country">{{$email->contact->country}}</td>
-                                                <td>
-                                                    <div class="data-action"><a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit"></i></a><a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a></div>
-                                                </td>
-                                            </tr>
+                                        @foreach ($emails as $email)
+                                        <tr class="data-row-item">
+                                            <td class="bulk-action-td" width="2%">
+                                                <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
+                                                <label class="checkbox-custom-label" for="dataCheck10"></label>
+                                            </td>
+                                            <td class="col-company">{{$email->contact->company}}</td>
+                                            <td class="col-name">{{$email->contact->name}}</td>
+                                            <td class="col-email">{{$email->email}}</td>
+                                            <td class="col-phone">{{$email->contact->mobile}}</td>
+                                            <td class="col-phone">{{$email->contact->phone}}</td>
+                                            <td class="col-category">{{$email->contact->category->name}}</td>
+                                            <td class="col-address">{{$email->contact->address}}</td>
+                                            <td class="col-country">{{$email->contact->country}}</td>
+                                            <td>
+                                                <div class="data-action">
+                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->contact->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
+                                                    <a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -368,6 +371,95 @@
     </div>
 </div>
 
+<!-- EDIT CONTACT POP UP DESIGN -->
+@if(isset($editContact))
+<div class="popup-wrap" id="editContactForm" style="display: @if ($edit)
+    block
+@else
+    none
+@endif">
+    <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactEditForm()"></span>
+        <div class="popup-inner">
+            <form class="ajx" method="POST" action="">
+                @csrf
+                <div class="row">
+                    <div class="formItem col-md-6">
+                        <label>Name</label>
+                        <div class="fieldArea">
+                            <input type="text" name="name" value="{{$editContact->name}}" class="form-control" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="formItem col-md-6">
+                        <label>Email</label>
+                        <div class="fieldArea">
+                            <input type="text" name="emails" value="" class="form-control" placeholder="Email Address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="formItem col-md-6">
+                        <label>Mobile</label>
+                        <div class="fieldArea">
+                            <input type="text" name="mobile" value="{{$editContact->mobile}}" class="form-control" placeholder="Mobile Number">
+                        </div>
+                    </div>
+                    <div class="formItem col-md-6">
+                        <label>Phone</label>
+                        <div class="fieldArea">
+                            <input type="text" name="phone" value="{{$editContact->phone}}" class="form-control" placeholder="Phone Number">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="formItem col-md-6">
+                        <label>Website</label>
+                        <div class="fieldArea">
+                            <input type="text" name="website" value="{{$editContact->website}}" class="form-control" placeholder="Website">
+                        </div>
+                    </div>
+                    <div class="formItem col-md-6">
+                        <label>Company</label>
+                        <div class="fieldArea">
+                            <input type="text" name="company" value="{{$editContact->company}}" class="form-control" placeholder="Company">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="formItem col-md-6">
+                        <label>Category</label>
+                        <div class="fieldArea">
+                            <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                                <option disabled selected>-- Select Contact Category --</option>
+                                @foreach ($categories as $category)
+                                <option value="{{$category->id}}" @if ($editContact->category_id == $category->id) selected @endif>{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formItem col-md-6">
+                        <label>Country</label>
+                        <div class="fieldArea">
+                            <input type="text" name="country" value="{{$editContact->country}}" class="form-control" placeholder="Country">
+                        </div>
+                    </div>
+                </div>
+                <div class="formItem">
+                    <label>Address</label>
+                    <div class="fieldArea">
+                        <input type="text" name="address" value="{{$editContact->address}}" class="form-control" placeholder="Address">
+                    </div>
+                </div>
+                <div class="formItem">
+                    <label></label>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+
 
 <script>
     // contact popup open
@@ -379,7 +471,10 @@
     function closeContactForm() {
         document.getElementById("myContactForm").style.display = "none";
     }
-
+    // edit contact popup close
+    function closeContactEditForm() {
+        document.getElementById("editContactForm").style.display = "none";
+    }
     //logout dropdown
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");

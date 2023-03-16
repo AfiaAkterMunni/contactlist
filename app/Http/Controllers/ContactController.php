@@ -16,7 +16,7 @@ class ContactController extends Controller
         // dd($emails);
         // $contacts = Contact::with('emails')->get();
         $categories = Category::get();
-        return view('pages.contact', ['categories' => $categories, 'emails' => $emails]);
+        return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContact' => null, 'edit' => false]);
     }
 
     public function store(StoreContactRequest $request)
@@ -42,5 +42,12 @@ class ContactController extends Controller
             ]);
         }
         return redirect(url('/'))->with('success', 'Contact Added Successfully!');
+    }
+    public function edit($id)
+    {
+        $editContact = Contact::with('emails')->find($id);
+        $emails = Email::with('contact')->get();
+        $categories = Category::get();
+        return view('pages.contact', ['editContact' => $editContact, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
     }
 }
