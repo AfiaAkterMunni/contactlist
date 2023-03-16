@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/categories', [CategoryController::class, 'show'])->name('categories');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 });
 
 

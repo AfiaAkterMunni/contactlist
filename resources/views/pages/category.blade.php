@@ -91,6 +91,13 @@
         {{ session('success') }}
     </div>
     @endif
+    
+    @if (session('editsuccess'))
+    <div class="alert alert-success alert-dismissible mb-0" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('editsuccess') }}
+    </div>
+    @endif
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
@@ -124,7 +131,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
-                                        @foreach ($categories as $key => $category)  
+                                        @foreach ($categories as $key => $category)
                                             <tr class="data-row-item">
                                                 <td class="bulk-action-td" width="2%">
                                                     <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
@@ -135,7 +142,7 @@
                                                 <td class="col-name"><span title="Contact Lists : ">{{$category->user->name}}</span></td>
                                                 <td>
                                                     <div class="data-action">
-                                                        <a data-w="750" href="/contact/edit/10" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
+                                                        <a data-w="750" href="{{route('category.edit', ['id' => $category->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -208,6 +215,37 @@
     </div>
 </div>
 
+<!-- Edit CATEGORY POP UP DESIGN -->
+@if(isset($editCategory))
+<div class="popup-wrap" id="editform" style="display: @if ($edit)
+    block
+@else
+    none
+@endif">
+    <div class="popup-body " style="width:550px"><span class="closePopup" onclick="closeCategoryEditForm()"></span>
+        <div class="popup-inner">
+            <form class="ajx" method="POST" action="{{route('category.update', ['id' => $editCategory->id])}}">
+                @csrf
+                <div class="formItem">
+                    <label class="mr-2">Category Name</label>
+                    <div class="fieldArea">
+                        <input type="text" name="name" value="{{ $editCategory->name }}" class="form-control" placeholder="Category Name" required>
+                    </div>
+                </div>
+                @error('name')
+                <p class="alert alert-danger">{{ $message }}</p>
+                @enderror
+
+                <div class="formItem">
+                    <label class="mr-5"></label>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+
 
 <script>
     // category popup open
@@ -218,6 +256,10 @@
     // category popup close
     function closeCategoryForm() {
         document.getElementById("myCategoryForm").style.display = "none";
+    }
+    // edit category popup close
+    function closeCategoryEditForm() {
+        document.getElementById("editform").style.display = "none";
     }
 
     //logout dropdown
