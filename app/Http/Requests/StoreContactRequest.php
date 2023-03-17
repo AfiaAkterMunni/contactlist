@@ -21,9 +21,11 @@ class StoreContactRequest extends FormRequest
      */
     public function rules(): array
     {
+        preg_match_all('/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/', $this->emails, $matches);
         $this->merge([
-            'emails' => isset($this->emails) ? explode(',', str_replace(' ', '', $this->emails)) : null,
+            'emails' => empty($matches[0]) ? null : $matches[0],
         ]);
+        // dd($this->emails);
         return [
             
             'name' => 'string|nullable',

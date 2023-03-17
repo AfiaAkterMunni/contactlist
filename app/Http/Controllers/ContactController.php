@@ -46,10 +46,12 @@ class ContactController extends Controller
     }
     public function edit($id)
     {
-        $editContact = Contact::with('emails')->find($id);
+        $editContactEmailWise = Email::with('contact')->find($id);
+        // dd($editContactEmailWise);
+        // $editContact = Contact::with('emails')->find($id);
         $emails = Email::with('contact')->get();
         $categories = Category::get();
-        return view('pages.contact', ['editContact' => $editContact, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
+        return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
     }
 
     public function update(Request $request, $id)

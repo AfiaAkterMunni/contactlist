@@ -222,7 +222,7 @@
 @else
     none
 @endif">
-    <div class="popup-body " style="width:550px"><span class="closePopup" onclick="closeCategoryEditForm()"></span>
+    <div class="popup-body " style="width:550px"><a href="{{route('categories')}}" class="closePopup"></a>
         <div class="popup-inner">
             <form class="ajx" method="POST" action="{{route('category.update', ['id' => $editCategory->id])}}">
                 @csrf
@@ -258,9 +258,9 @@
         document.getElementById("myCategoryForm").style.display = "none";
     }
     // edit category popup close
-    function closeCategoryEditForm() {
-        document.getElementById("editform").style.display = "none";
-    }
+    // function closeCategoryEditForm() {
+    //     document.getElementById("editform").style.display = "none";
+    // }
 
     //logout dropdown
     function myFunction() {

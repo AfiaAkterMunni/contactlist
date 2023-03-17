@@ -240,7 +240,7 @@
                                             <td class="col-country">{{$email->contact->country}}</td>
                                             <td>
                                                 <div class="data-action">
-                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->contact->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
+                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
                                                     <a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
                                             </td>
@@ -301,11 +301,10 @@
                             <input type="text" name="name" value="" class="form-control" placeholder="Name">
                         </div>
                     </div>
-
                     <div class="formItem col-md-6">
-                        <label>Email</label>
+                        <label>Website</label>
                         <div class="fieldArea">
-                            <input type="text" name="emails" value="" class="form-control" placeholder="Email Address">
+                            <input type="text" name="website" value="" class="form-control" placeholder="Website">
                         </div>
                     </div>
                 </div>
@@ -325,15 +324,15 @@
                 </div>
                 <div class="row">
                     <div class="formItem col-md-6">
-                        <label>Website</label>
-                        <div class="fieldArea">
-                            <input type="text" name="website" value="" class="form-control" placeholder="Website">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
                         <label>Company</label>
                         <div class="fieldArea">
                             <input type="text" name="company" value="" class="form-control" placeholder="Company">
+                        </div>
+                    </div>
+                    <div class="formItem col-md-6">
+                        <label>Address</label>
+                        <div class="fieldArea">
+                            <input type="text" name="address" value="" class="form-control" placeholder="Address">
                         </div>
                     </div>
                 </div>
@@ -356,10 +355,12 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="formItem">
-                    <label>Address</label>
+                    <label>Email</label>
                     <div class="fieldArea">
-                        <input type="text" name="address" value="" class="form-control" placeholder="Address">
+                        <textarea name="emails" class="form-control" placeholder="Email Address"></textarea>
+                        <!-- <input type="text" name="emails" value="" class="form-control" placeholder="Email Address"> -->
                     </div>
                 </div>
                 <div class="formItem">
@@ -372,28 +373,28 @@
 </div>
 
 <!-- EDIT CONTACT POP UP DESIGN -->
-@if(isset($editContact))
+@if(isset($editContactEmailWise))
 <div class="popup-wrap" id="editContactForm" style="display: @if ($edit)
     block
 @else
     none
 @endif">
-    <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactEditForm()"></span>
+    <div class="popup-body " style="width:750px"><a href="{{route('contact')}}" class="closePopup"></a>
         <div class="popup-inner">
-            <form class="ajx" method="POST" action="{{route('contact.update', ['id' => $editContact->id])}}">
+            <form class="ajx" method="POST" action="{{route('contact.update', ['id' => $editContactEmailWise->id])}}">
                 @csrf
                 <div class="row">
                     <div class="formItem col-md-6">
                         <label>Name</label>
                         <div class="fieldArea">
-                            <input type="text" name="name" value="{{$editContact->name}}" class="form-control" placeholder="Name">
+                            <input type="text" name="name" value="{{$editContactEmailWise->contact->name}}" class="form-control" placeholder="Name">
                         </div>
                     </div>
 
                     <div class="formItem col-md-6">
                         <label>Email</label>
                         <div class="fieldArea">
-                            <input type="text" name="" value="" class="form-control" placeholder="Email Address">
+                            <input type="text" name="" value="{{$editContactEmailWise->email}}" class="form-control" placeholder="Email Address">
                         </div>
                     </div>
                 </div>
@@ -401,13 +402,13 @@
                     <div class="formItem col-md-6">
                         <label>Mobile</label>
                         <div class="fieldArea">
-                            <input type="text" name="mobile" value="{{$editContact->mobile}}" class="form-control" placeholder="Mobile Number">
+                            <input type="text" name="mobile" value="{{$editContactEmailWise->contact->mobile}}" class="form-control" placeholder="Mobile Number">
                         </div>
                     </div>
                     <div class="formItem col-md-6">
                         <label>Phone</label>
                         <div class="fieldArea">
-                            <input type="text" name="phone" value="{{$editContact->phone}}" class="form-control" placeholder="Phone Number">
+                            <input type="text" name="phone" value="{{$editContactEmailWise->contact->phone}}" class="form-control" placeholder="Phone Number">
                         </div>
                     </div>
                 </div>
@@ -415,13 +416,13 @@
                     <div class="formItem col-md-6">
                         <label>Website</label>
                         <div class="fieldArea">
-                            <input type="text" name="website" value="{{$editContact->website}}" class="form-control" placeholder="Website">
+                            <input type="text" name="website" value="{{$editContactEmailWise->contact->website}}" class="form-control" placeholder="Website">
                         </div>
                     </div>
                     <div class="formItem col-md-6">
                         <label>Company</label>
                         <div class="fieldArea">
-                            <input type="text" name="company" value="{{$editContact->company}}" class="form-control" placeholder="Company">
+                            <input type="text" name="company" value="{{$editContactEmailWise->contact->company}}" class="form-control" placeholder="Company">
                         </div>
                     </div>
                 </div>
@@ -432,7 +433,7 @@
                             <select class="form-control pt-1" name="category" style="font-size: 15px;">
                                 <option disabled selected>-- Select Contact Category --</option>
                                 @foreach ($categories as $category)
-                                <option value="{{$category->id}}" @if ($editContact->category_id == $category->id) selected @endif>{{$category->name}}</option>
+                                <option value="{{$category->id}}" @if ($editContactEmailWise->contact->category_id == $category->id) selected @endif>{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -440,14 +441,14 @@
                     <div class="formItem col-md-6">
                         <label>Country</label>
                         <div class="fieldArea">
-                            <input type="text" name="country" value="{{$editContact->country}}" class="form-control" placeholder="Country">
+                            <input type="text" name="country" value="{{$editContactEmailWise->contact->country}}" class="form-control" placeholder="Country">
                         </div>
                     </div>
                 </div>
                 <div class="formItem">
                     <label>Address</label>
                     <div class="fieldArea">
-                        <input type="text" name="address" value="{{$editContact->address}}" class="form-control" placeholder="Address">
+                        <input type="text" name="address" value="{{$editContactEmailWise->contact->address}}" class="form-control" placeholder="Address">
                     </div>
                 </div>
                 <div class="formItem">
@@ -472,9 +473,9 @@
         document.getElementById("myContactForm").style.display = "none";
     }
     // edit contact popup close
-    function closeContactEditForm() {
-        document.getElementById("editContactForm").style.display = "none";
-    }
+    // function closeContactEditForm() {
+    //     document.getElementById("editContactForm").style.display = "none";
+    // }
     //logout dropdown
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
