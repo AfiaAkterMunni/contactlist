@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [ContactController::class, 'show'])->name('contact');
     Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/contact/edit/{id}', [ContactController::class, 'edit'])->name('contact.edit');
+    Route::post('/contact/update/{id}', [ContactController::class, 'update'])->name('contact.update');
 
 
 

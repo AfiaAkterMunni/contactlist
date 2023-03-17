@@ -6,6 +6,7 @@ use App\Http\Requests\StoreContactRequest;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Email;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
@@ -49,5 +50,24 @@ class ContactController extends Controller
         $emails = Email::with('contact')->get();
         $categories = Category::get();
         return view('pages.contact', ['editContact' => $editContact, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Contact::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'mobile' => $request->input('mobile'),
+            'phone' => $request->input('phone'),
+            'website' => $request->input('website'),
+            'company' => $request->input('company'),
+            'category_id' => $request->input('category'),
+            'country' => $request->input('country'),
+            'address' => $request->input('address'),
+        ]);
+        // dd($request);
+        // Category::where('id', $id)->update([
+        //     'name' => $request->name
+        // ]);
+        return redirect(url('/'))->with('editsuccess', 'Contact Updated Successfully!');
     }
 }

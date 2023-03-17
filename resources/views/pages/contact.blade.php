@@ -380,7 +380,7 @@
 @endif">
     <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactEditForm()"></span>
         <div class="popup-inner">
-            <form class="ajx" method="POST" action="">
+            <form class="ajx" method="POST" action="{{route('contact.update', ['id' => $editContact->id])}}">
                 @csrf
                 <div class="row">
                     <div class="formItem col-md-6">
@@ -393,7 +393,7 @@
                     <div class="formItem col-md-6">
                         <label>Email</label>
                         <div class="fieldArea">
-                            <input type="text" name="emails" value="" class="form-control" placeholder="Email Address">
+                            <input type="text" name="" value="" class="form-control" placeholder="Email Address">
                         </div>
                     </div>
                 </div>
