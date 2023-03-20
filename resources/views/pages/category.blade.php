@@ -98,6 +98,12 @@
         {{ session('editsuccess') }}
     </div>
     @endif
+    @error('name')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
@@ -238,7 +244,7 @@
 
                 <div class="formItem">
                     <label class="mr-5"></label>
-                    <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Save</button>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn mt-3">Update</button>
                 </div>
             </form>
         </div>

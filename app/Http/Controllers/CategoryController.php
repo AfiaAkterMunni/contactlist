@@ -32,9 +32,8 @@ class CategoryController extends Controller
         // dd($editCategory);
         return view('pages.category', ['categories' => $categories, 'editCategory' => $editCategory, 'edit' => true]);
     }
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        // $category = Category::find($id);
         Category::where('id', $id)->update([
             'name' => $request->name
         ]);
