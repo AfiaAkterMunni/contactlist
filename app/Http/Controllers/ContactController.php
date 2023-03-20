@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactRequest;
+use App\Http\Requests\UpdateContactRequest;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Email;
@@ -14,8 +15,6 @@ class ContactController extends Controller
     public function show()
     {
         $emails = Email::with('contact')->get();
-        // dd($emails);
-        // $contacts = Contact::with('emails')->get();
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContact' => null, 'edit' => false]);
     }
@@ -47,16 +46,18 @@ class ContactController extends Controller
     public function edit($id)
     {
         $editContactEmailWise = Email::with('contact')->find($id);
-        // dd($editContactEmailWise);
-        // $editContact = Contact::with('emails')->find($id);
         $emails = Email::with('contact')->get();
         $categories = Category::get();
         return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateContactRequest $request, $id)
     {
-        Contact::where('id', $id)->update([
+        $email = Email::with('contact')->find($id);
+        Email::where ('id', $id)->update([
+            'email' => $request->input('email')
+        ]);
+        Contact::where('id', $email->contact->id)->update([
             'name' => $request->input('name'),
             'mobile' => $request->input('mobile'),
             'phone' => $request->input('phone'),
@@ -66,10 +67,6 @@ class ContactController extends Controller
             'country' => $request->input('country'),
             'address' => $request->input('address'),
         ]);
-        // dd($request);
-        // Category::where('id', $id)->update([
-        //     'name' => $request->name
-        // ]);
         return redirect(url('/'))->with('editsuccess', 'Contact Updated Successfully!');
     }
 }

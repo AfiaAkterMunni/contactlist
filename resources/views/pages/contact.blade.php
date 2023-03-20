@@ -390,11 +390,10 @@
                             <input type="text" name="name" value="{{$editContactEmailWise->contact->name}}" class="form-control" placeholder="Name">
                         </div>
                     </div>
-
                     <div class="formItem col-md-6">
-                        <label>Email</label>
+                        <label>Website</label>
                         <div class="fieldArea">
-                            <input type="text" name="" value="{{$editContactEmailWise->email}}" class="form-control" placeholder="Email Address">
+                            <input type="text" name="website" value="{{$editContactEmailWise->contact->website}}" class="form-control" placeholder="Website">
                         </div>
                     </div>
                 </div>
@@ -414,17 +413,17 @@
                 </div>
                 <div class="row">
                     <div class="formItem col-md-6">
-                        <label>Website</label>
-                        <div class="fieldArea">
-                            <input type="text" name="website" value="{{$editContactEmailWise->contact->website}}" class="form-control" placeholder="Website">
-                        </div>
-                    </div>
-                    <div class="formItem col-md-6">
                         <label>Company</label>
                         <div class="fieldArea">
                             <input type="text" name="company" value="{{$editContactEmailWise->contact->company}}" class="form-control" placeholder="Company">
                         </div>
                     </div>
+                    <div class="formItem col-md-6">
+                    <label>Address</label>
+                    <div class="fieldArea">
+                        <input type="text" name="address" value="{{$editContactEmailWise->contact->address}}" class="form-control" placeholder="Address">
+                    </div>
+                </div>
                 </div>
                 <div class="row">
                     <div class="formItem col-md-6">
@@ -446,14 +445,15 @@
                     </div>
                 </div>
                 <div class="formItem">
-                    <label>Address</label>
+                    <label>Email</label>
                     <div class="fieldArea">
-                        <input type="text" name="address" value="{{$editContactEmailWise->contact->address}}" class="form-control" placeholder="Address">
+                        <input type="text" name="email" value="{{$editContactEmailWise->email}}" class="form-control" placeholder="Email Address">
                     </div>
                 </div>
+                
                 <div class="formItem">
                     <label></label>
-                    <button type="submit" class="btn btn-primary mailer-primary-btn">Save</button>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn">Update</button>
                 </div>
             </form>
         </div>
