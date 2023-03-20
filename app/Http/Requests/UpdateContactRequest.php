@@ -23,7 +23,7 @@ class UpdateContactRequest extends FormRequest
     {
         return [
             'name' => 'string|nullable',
-            'email' => 'required|email|unique:emails,email',
+            'email' => 'required|email|unique:emails,email,'.$this->id,
             'mobile' => 'numeric|nullable',
             'phone' => 'numeric|nullable',
             'website' => 'string|nullable',

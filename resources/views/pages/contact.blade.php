@@ -112,6 +112,12 @@
         <p>{{ $message }}</p>
     </div>
     @enderror
+    @error('email')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
     @error('emails')
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
@@ -419,11 +425,11 @@
                         </div>
                     </div>
                     <div class="formItem col-md-6">
-                    <label>Address</label>
-                    <div class="fieldArea">
-                        <input type="text" name="address" value="{{$editContactEmailWise->contact->address}}" class="form-control" placeholder="Address">
+                        <label>Address</label>
+                        <div class="fieldArea">
+                            <input type="text" name="address" value="{{$editContactEmailWise->contact->address}}" class="form-control" placeholder="Address">
+                        </div>
                     </div>
-                </div>
                 </div>
                 <div class="row">
                     <div class="formItem col-md-6">
@@ -450,7 +456,7 @@
                         <input type="text" name="email" value="{{$editContactEmailWise->email}}" class="form-control" placeholder="Email Address">
                     </div>
                 </div>
-                
+
                 <div class="formItem">
                     <label></label>
                     <button type="submit" class="btn btn-primary mailer-primary-btn">Update</button>
