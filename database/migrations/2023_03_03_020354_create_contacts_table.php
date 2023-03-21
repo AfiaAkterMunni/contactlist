@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('created_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

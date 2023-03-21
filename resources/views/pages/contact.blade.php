@@ -106,6 +106,18 @@
         {{ session('success') }}
     </div>
     @endif
+    @if (session('editsuccess'))
+    <div class="alert alert-success alert-dismissible mb-0" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('editsuccess') }}
+    </div>
+    @endif
+    @if (session('deletesuccess'))
+    <div class="alert alert-success alert-dismissible mb-0" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('deletesuccess') }}
+    </div>
+    @endif
     @error('name')
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
@@ -233,8 +245,8 @@
                                         @foreach ($emails as $email)
                                         <tr class="data-row-item">
                                             <td class="bulk-action-td" width="2%">
-                                                <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
-                                                <label class="checkbox-custom-label" for="dataCheck10"></label>
+                                                <input value="{{$email->id}}" type="checkbox" class="styled-checkbox data-check" id="{{$email->id}}">
+                                                <label class="checkbox-custom-label" for="{{$email->id}}"></label>
                                             </td>
                                             <td class="col-company">{{$email->contact->company}}</td>
                                             <td class="col-name">{{$email->contact->name}}</td>
@@ -247,7 +259,7 @@
                                             <td>
                                                 <div class="data-action">
                                                     <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
-                                                    <a onclick="deleteData(event,this)" href="/contact/delete/10" class="action-delete "><i class="mailer-icon delete"></i></a>
+                                                    <a href="{{route('contact.delete', ['id' => $email->id])}}" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

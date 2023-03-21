@@ -69,4 +69,10 @@ class ContactController extends Controller
         ]);
         return redirect(url('/'))->with('editsuccess', 'Contact Updated Successfully!');
     }
+    public function delete($id)
+    {
+        $email = Email::find($id);
+        Email::where('id', $id)->delete();
+        return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
+    }
 }
