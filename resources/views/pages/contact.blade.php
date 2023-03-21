@@ -189,7 +189,7 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div id="datalist">
-                        <div class="data-wraper">
+                        @if (count($emails) > 0) <div class="data-wraper">
                             <div class="data-wrap">
                                 <table class="databuilder-table table table-bordered table-striped info_table table-contact">
                                     <thead>
@@ -271,7 +271,6 @@
                                 <div class="bulk-action-wrapper">
                                     <select class="bulk-action custom-select custom-select-sm" id="bulk_action">
                                         <option value=""></option>
-                                        <option value="delete">Delete Selected</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
@@ -298,12 +297,17 @@
                                     <a href="" onclick="">Last</a>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                    @else
+                    <div class="alert alert-primary" role="alert">
+                        <h4 class="alert-heading">Contact Not Available!! Please add contact to show the list.</h4>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- ADD CONTACT POP UP DESIGN -->
