@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $fillable = ['name', 'company', 'phone', 'mobile', 'address', 'country', 'website', 'category_id', 'created_by'];
 
     /**

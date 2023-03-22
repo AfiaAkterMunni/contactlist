@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->foreignId('contact_id');
-            $table->softDeletes();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

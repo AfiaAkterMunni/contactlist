@@ -2,8 +2,8 @@
 @section('title', 'Contact')
 @section('content')
 <div class="content-area">
-    <div class="module-header">
-        <h2 class="currentModule">
+    <div class="row module-header">
+        <h2 class="col-md-3 currentModule">
             <div class="page-icon"><i class="mailer-icon"></i></div>
             Contact
             <a href="#" class="popup btn btn_a" data-w="750" onclick="openContactForm()">
@@ -16,20 +16,20 @@
                 </div>
             </a>
         </h2>
-        <div class="loader">
-            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                <title>Sync</title>
-                <path d="M434.67 285.59v-29.8c0-98.73-80.24-178.79-179.2-178.79a179 179 0 00-140.14 67.36m-38.53 82v29.8C76.8 355 157 435 256 435a180.45 180.45 0 00140-66.92" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 256l44-44 46 44M480 256l-44 44-46-44"></path>
-            </svg>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <form action="" method="GET">
+                @csrf
+                <div class="search-input input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search" style="margin-right: 5px; border-radius: 5px">
+                    <span class="input-group-btn">
+                        <button class="btn btn_a" type="submit" style="font-size: 14px;">Search</button>
+                    </span>
+                </div>
+            </form>
         </div>
-        <div class="searchBox">
-            <div class="search-input">
-                <span class="searchCancel" onclick="searchCancel(event)">×</span>
-                <input type="text" onkeyup="searchData(event)" placeholder="Search" class="searchInput form-control">
-            </div>
-        </div>
-        <div class="download">
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
             <a href="#" class="btn btn_a">
                 <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
                     <title>Download</title>
@@ -45,7 +45,15 @@
                 </div>
             </a>
         </div>
-        <div class="header-right sm-none">
+        <div class="col-md-1"></div>
+        <div class="col-md-.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Sync</title>
+                <path d="M434.67 285.59v-29.8c0-98.73-80.24-178.79-179.2-178.79a179 179 0 00-140.14 67.36m-38.53 82v29.8C76.8 355 157 435 256 435a180.45 180.45 0 00140-66.92" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path>
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 256l44-44 46 44M480 256l-44 44-46-44"></path>
+            </svg>
+        </div>
+        <div class="col-md-.5 sm-none">
             <!-- Right -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -189,7 +197,8 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div id="datalist">
-                        @if (count($emails) > 0) <div class="data-wraper">
+                        @if (count($emails) > 0)
+                        <div class="data-wraper">
                             <div class="data-wrap">
                                 <table class="databuilder-table table table-bordered table-striped info_table table-contact">
                                     <thead>
@@ -259,7 +268,7 @@
                                             <td>
                                                 <div class="data-action">
                                                     <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
-                                                    <a href="{{route('contact.delete', ['id' => $email->id])}}" class="action-delete "><i class="mailer-icon delete"></i></a>
+                                                    <a href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete "><i class="mailer-icon delete"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -297,17 +306,17 @@
                                     <a href="" onclick="">Last</a>
                                 </div>
                             </div>
+                        </div>
+                        @else
+                        <div class="alert alert-primary" role="alert">
+                            <h4 class="alert-heading">Contact Not Available!! Please add contact to show the list.</h4>
+                        </div>
+                        @endif
                     </div>
-                    @else
-                    <div class="alert alert-primary" role="alert">
-                        <h4 class="alert-heading">Contact Not Available!! Please add contact to show the list.</h4>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- ADD CONTACT POP UP DESIGN -->
@@ -377,12 +386,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="formItem">
-                    <label>Email</label>
-                    <div class="fieldArea">
-                        <textarea name="emails" class="form-control" placeholder="Email Address"></textarea>
-                        <!-- <input type="text" name="emails" value="" class="form-control" placeholder="Email Address"> -->
+                <div class="row">
+                    <div class="formItem col-md-12">
+                        <label>Email</label>
+                        <div class="fieldArea">
+                            <textarea name="emails" class="form-control" placeholder="Email Address"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="formItem">
@@ -466,7 +475,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="formItem">
+                <div class="formItem col-md-12">
                     <label>Email</label>
                     <div class="fieldArea">
                         <input type="text" name="email" value="{{$editContactEmailWise->email}}" class="form-control" placeholder="Email Address">

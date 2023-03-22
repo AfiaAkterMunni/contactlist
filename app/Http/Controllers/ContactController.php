@@ -14,7 +14,7 @@ class ContactController extends Controller
 {
     public function show()
     {
-        $emails = Email::with('contact')->get();
+        $emails = Email::where('status', true)->with('contact')->get();
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContact' => null, 'edit' => false]);
     }
@@ -46,7 +46,7 @@ class ContactController extends Controller
     public function edit($id)
     {
         $editContactEmailWise = Email::with('contact')->find($id);
-        $emails = Email::with('contact')->get();
+        $emails = Email::where('status', true)->with('contact')->get();
         $categories = Category::get();
         return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
     }
@@ -69,10 +69,11 @@ class ContactController extends Controller
         ]);
         return redirect(url('/'))->with('editsuccess', 'Contact Updated Successfully!');
     }
-    public function delete($id)
+    public function inactive($id)
     {
-        $email = Email::find($id);
-        Email::where('id', $id)->delete();
+        Email::where('id', $id)->update([
+            'status' => false
+        ]);
         return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
     }
 }

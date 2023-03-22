@@ -82,7 +82,7 @@ body,
 }
 .module-header .loader {
   position: absolute;
-  right: 50px;
+  /* right: 50px; */
   line-height: 1;
   top: 12px;
   cursor: pointer;
@@ -109,7 +109,7 @@ body,
 
 .module-header .download {
   position: absolute;
-  right: 90px;
+  /* right: 90px; */
   top: 10px;
   cursor: pointer;
 }
@@ -381,12 +381,12 @@ li.active a .menu_ic svg {
   margin-bottom: 0px;
   margin-right: 5px;
   color: rgb(83, 83, 83);
-  padding: 2px 8px;
+  padding: 2px 6px;
   border: 1px solid rgb(87, 175, 225);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  min-width: 95px;
+  min-width: 90px;
 }
 
 .btn.btn_a:hover {
@@ -1047,9 +1047,9 @@ input[type=date] {
     border: 5px solid #f8fafc;
     z-index: 1;
   }
-  .download .btn.btn_a{
+  /* .download .btn.btn_a{
     right: 80px;
-  }
+  } */
   .btn.btn_a svg {
     width: 56px;
     height: 46px;
@@ -1094,9 +1094,9 @@ input[type=date] {
   .currentModule .btn {
     margin-left: 5px;
   }
-  .searchBox {
-    max-width: 155px;
-  }
+  /* .searchBox {
+    max-width: 140px;
+  } */
   .nav-toggler {
     position: absolute;
     left: 0;
