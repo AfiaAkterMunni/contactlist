@@ -6,7 +6,7 @@
         <h2 class="col-md-3 currentModule">
             <div class="page-icon"><i class="mailer-icon"></i></div>
             Contact
-            <a href="#" class="popup btn btn_a" data-w="750" onclick="openContactForm()">
+            <a href="#" class="popup btn btn_a" data-w="750" onclick="openContactForm()" style="min-width: 110px">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                     <title>Add Contact</title>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"></path>
@@ -16,21 +16,21 @@
                 </div>
             </a>
         </h2>
-        <div class="col-md-2"></div>
-        <div class="col-md-3">
-            <form action="" method="GET">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <form action="{{route('contact.search')}}" method="GET">
                 @csrf
                 <div class="search-input input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search" style="margin-right: 5px; border-radius: 5px">
+                    <input type="text" name="search" class="form-control" placeholder="Search" style="margin-right: 5px; border-radius: 5px; min-width:60px">
                     <span class="input-group-btn">
-                        <button class="btn btn_a" type="submit" style="font-size: 14px;">Search</button>
+                        <button class="btn btn_a" type="submit" style="font-size: 14px; min-width:65px">Search</button>
                     </span>
                 </div>
             </form>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-1">
-            <a href="#" class="btn btn_a">
+            <a href="#" class="btn btn_a" style="min-width: 85px">
                 <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
                     <title>Download</title>
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -309,7 +309,7 @@
                         </div>
                         @else
                         <div class="alert alert-primary" role="alert">
-                            <h4 class="alert-heading">Contact Not Available!! Please add contact to show the list.</h4>
+                            <h4 class="alert-heading">Contact Not Found!!</h4>
                         </div>
                         @endif
                     </div>

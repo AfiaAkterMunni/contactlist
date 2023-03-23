@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/contact/edit/{id}', [ContactController::class, 'edit'])->name('contact.edit');
     Route::post('/contact/update/{id}', [ContactController::class, 'update'])->name('contact.update');
     Route::get('/contact/inactive/{id}', [ContactController::class, 'inactive'])->name('contact.inactive');
+    Route::get('/contact/search', [ContactController::class, 'search'])->name('contact.search');
 
 
     Route::get('/categories', [CategoryController::class, 'show'])->name('categories');

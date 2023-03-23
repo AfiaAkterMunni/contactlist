@@ -16,7 +16,7 @@ class ContactController extends Controller
     {
         $emails = Email::where('status', true)->with('contact')->get();
         $categories = Category::get();
-        return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContact' => null, 'edit' => false]);
+        return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
     }
 
     public function store(StoreContactRequest $request)
@@ -75,5 +75,15 @@ class ContactController extends Controller
             'status' => false
         ]);
         return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
+    }
+    public function search(Request $request)
+    {
+        $emails = Email::where('email', 'LIKE', "$request->search")
+                        ->orWhereHas('contact', function ($query) use($request) {
+                            $query->where('company', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "$request->search");
+                        })->get();
+                       
+        $categories = Category::get();
+        return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
     }
 }
