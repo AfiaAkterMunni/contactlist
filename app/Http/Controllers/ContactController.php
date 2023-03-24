@@ -71,9 +71,22 @@ class ContactController extends Controller
     }
     public function inactive($id)
     {
-        Email::where('id', $id)->update([
-            'status' => false
-        ]);
+        $contact = Email::find($id);
+
+        if($contact->status == true)
+        {
+            Email::where('id', $id)->update([
+                'status' => false
+            ]);
+            return redirect(url('/'))->with('deletesuccess', 'Contact Inactive Successfully!');
+        }
+        else
+        {
+            Email::where('id', $id)->update([
+                'status' => true
+            ]);
+            return redirect(url('/'))->with('deletesuccess', 'Contact Active Successfully!');
+        }
         return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
     }
     public function search(Request $request)

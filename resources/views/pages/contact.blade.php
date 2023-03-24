@@ -267,8 +267,12 @@
                                             <td class="col-country">{{$email->contact->country}}</td>
                                             <td>
                                                 <div class="data-action">
-                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
-                                                    <a href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete "><i class="mailer-icon delete"></i></a>
+                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup btn btn-md btn-info">Update</a>
+                                                    @if($email->status == false)
+                                                    <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete btn btn-md btn-danger">Inactive</a>
+                                                @else
+                                                    <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete btn btn-md btn-success">Active</a>
+                                                @endif
                                                 </div>
                                             </td>
                                         </tr>

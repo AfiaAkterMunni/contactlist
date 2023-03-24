@@ -2323,7 +2323,7 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #38c172;
+  background-color: #448f63;
   border-color: #38c172;
 }
 .btn-success:hover {
@@ -2413,12 +2413,12 @@ fieldset:disabled a.btn {
 
 .btn-danger {
   color: #fff;
-  background-color: #e3342f;
-  border-color: #e3342f;
+  background-color: #d1959a;
+  border-color: #d1959a;
 }
 .btn-danger:hover {
   color: #fff;
-  background-color: #d0211c;
+  background-color: #d12826;
   border-color: #c51f1a;
 }
 .btn-danger:focus, .btn-danger.focus {
