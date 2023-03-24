@@ -14,7 +14,7 @@ class ContactController extends Controller
 {
     public function show()
     {
-        $emails = Email::where('status', true)->with('contact')->get();
+        $emails = Email::where('status', true)->with('contact')->paginate(5);
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
     }
