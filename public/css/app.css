@@ -9616,8 +9616,8 @@ table.table.info_table {
 }
 
 .data-action .mailer-icon {
-  width: 16px;
-  height: 22px;
+  width: 18px;
+  height: 24px;
 }
 
 .data-action a::after {
@@ -10102,27 +10102,9 @@ table tbody tr.data-row-paused * {
   background-image: url(../images/dashboard.png);
 }
 
-/* .mailer-icon.contacts {
-  background-image: url(../images/contacts.png);
+.mailer-icon.act {
+  background-image: url(../images/active.png);
 }
-.mailer-icon.newsletter {
-  background-image: url(/images/newsletter.png?dbc82f94289423fc9b3a637617ffdcef);
-}
-.mailer-icon.campaign {
-  background-image: url(/images/campaign.png?fd0f1714daeb7c08d2765fb79ca41339);
-}
-.mailer-icon.media {
-  background-image: url(/images/files.png?497b6d91eec89b605155dd47c1885bc4);
-}
-.mailer-icon.sender {
-  background-image: url(/images/sender.png?b7f92c14021dd4047bd9a60507c1eabf);
-}
-.mailer-icon.template {
-  background-image: url(/images/template.png?4ea08f76b886ca5f60d127bb055076eb);
-}
-.mailer-icon.settings {
-  background-image: url(/images/settings.png?acced8376548719a13b96dd020053dcb);
-} */
 .mailer-icon.delete {
   background-image: url(../images/delete.png);
 }
