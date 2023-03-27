@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,13 @@ Route::middleware('auth')->group(function(){
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users');
+        Route::post('store', [UserController::class, 'store'])->name('user.store');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
+    });
 });
 
 
