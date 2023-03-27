@@ -6,7 +6,7 @@
 
 </head>
 
-<body>
+<body onmousedown="return false" onselectstart="return false">
 
     <div class="wrapper">
         @include('includes.sidebar')
