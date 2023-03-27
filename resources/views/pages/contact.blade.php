@@ -290,7 +290,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="data-controller-wrap row">
+                                 <div class="data-controller-wrap row">
                                     <div class="bulk-action-wrapper col-md-4">
                                         <select class="bulk-action custom-select custom-select-sm" id="bulk_action">
                                             <option value=""></option>
@@ -298,20 +298,6 @@
                                             <option value="inactive">Inactive</option>
                                         </select>
                                         <button class="bulk-action-btn" id="bulk_action_btn">Apply</button>
-                                    </div>
-                                    <div class="item-per-page">
-                                        <div class="item-per-page-toggle col-md-4">
-                                            <label>Per Page </label>
-                                            <input type="number" id="ippIn" min="1"><span></span>
-                                        </div>
-                                        <ul id="ippList">
-                                            <li>22</li>
-                                            <li>50</li>
-                                            <li>100</li>
-                                            <li>500</li>
-                                            <li>1000</li>
-                                            <li>5000</li>
-                                        </ul>
                                     </div>
                                     <div  class="col-md-4">
                                         {{ $emails->links('includes.paginator') }}
@@ -328,7 +314,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 
 <!-- ADD CONTACT POP UP DESIGN -->
 <div class="popup-wrap" id="myContactForm" style="display: none;">

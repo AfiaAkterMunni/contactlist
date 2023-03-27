@@ -1,38 +1,17 @@
 @if ($paginator->hasPages())
-    <div class="row">
-        <div class="col-md-12">
-            <nav class="pgn">
-                <ul>
-                    <li>
-                        @if ($paginator->onFirstPage())
-                            <span class="pgn__prev previous-link-disable">Prev</span>
-                        @else
-                            <span  class="pgn__prev">
-                                <a href="{{$paginator->previousPageUrl()}}" class="previous-link">Prev</a>
-                            </span>
-                        @endif
-                    </li>
-                    @for ($page = 1; $page <= $paginator->lastPage(); $page++)
-                        <li>
-                            <a
-                                class="pgn__num @if ($paginator->currentPage() == $page) current @endif"
-                                href="{{ $paginator->url($page) }}"
-                            >
-                                {{ $page }}
-                            </a>
-                        </li>
-                    @endfor
-                    <li>
-                        @if ($paginator->hasMorePages())
-                            <span class="pgn__next">
-                                <a href="{{$paginator->nextPageUrl()}}" class="next-link">Next</a>
-                            </span>
-                        @else
-                            <span class="pgn__next previous-link-disable">Next</span>
-                        @endif
-                    </li>
-                </ul>
-            </nav>
-        </div>
+    <div class="pagination-wrap pagination">
+        @if ($paginator->onFirstPage())
+            <span>< Prev</span>
+        @else
+            <a href="{{ $paginator->previousPageUrl() }}">< Prev</a>
+        @endif
+        @for ($page = 1; $page <= $paginator->lastPage(); $page++)
+            <a href="{{ $paginator->url($page) }}" class="@if ($paginator->currentPage() == $page) active @endif">{{$page}}</a>
+        @endfor
+        @if ($paginator->hasMorePages())
+            <a href="{{$paginator->nextPageUrl()}}">Next ></a>
+        @else
+            <span>Next</span>
+        @endif
     </div>
 @endif

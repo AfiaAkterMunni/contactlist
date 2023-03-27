@@ -143,37 +143,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="data-controller-wrap">
-                                <div class="bulk-action-wrapper">
-                                    <select class="bulk-action custom-select custom-select-sm" id="bulk_action">
-                                        <option value=""></option>
-                                        <option value="delete">Delete Selected</option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                    <button class="bulk-action-btn" id="bulk_action_btn">Apply</button>
-                                </div>
-                                <div class="item-per-page">
-                                    <div class="item-per-page-toggle">
-                                        <label>Per Page </label>
-                                        <input type="number" id="ippIn" min="1"><span></span>
-                                    </div>
-                                    <ul id="ippList">
-                                        <li>22</li>
-                                        <li>50</li>
-                                        <li>100</li>
-                                        <li>500</li>
-                                        <li>1000</li>
-                                        <li>5000</li>
-                                    </ul>
-                                </div>
-                                <div class="pagination-wrap pagination">
-                                    <a href="" class="active" onclick="">1</a>
-                                    <a href="" class="" onclick="">2</a>
-                                    <a href="" class="" onclick="">Next »</a>
-                                    <a href="" onclick="">Last</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
