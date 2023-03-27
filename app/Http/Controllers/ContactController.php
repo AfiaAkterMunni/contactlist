@@ -46,7 +46,7 @@ class ContactController extends Controller
     public function edit($id)
     {
         $editContactEmailWise = Email::with('contact')->find($id);
-        $emails = Email::where('status', true)->with('contact')->get();
+        $emails = Email::where('status', true)->with('contact')->paginate(5);
         $categories = Category::get();
         return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
     }
