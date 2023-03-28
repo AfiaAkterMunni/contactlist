@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -24,27 +26,18 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        dd($request);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password'))
+        ];
+        $user = User::create($data);
+        $user->assignRole($request->input('role'));
+        return redirect(url('/users'))->with('success', 'User Added Successfully!');
     }
 
     /**
@@ -55,7 +48,6 @@ class UserController extends Controller
         $users = User::get();
         $editUser = User::find($id);
         $roles = Role::get();
-        // dd($roles);
         return view('pages.user', [
             'users' => $users, 
             'editUser' => $editUser, 

@@ -124,7 +124,7 @@
                                             <tr class="data-row-item">
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$user->name}}</td>
-                                                <td>user</td>
+                                                <td>{{$user->roles->pluck('name')->first()}}</td>
                                                 <td>
                                                     <div class="data-action">
                                                         <a data-w="750" href="{{route('user.edit', ['id' => $user->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
