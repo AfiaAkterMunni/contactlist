@@ -257,14 +257,14 @@
                                                     <input value="{{$email->id}}" type="checkbox" class="styled-checkbox data-check" id="{{$email->id}}">
                                                     <label class="checkbox-custom-label" for="{{$email->id}}"></label>
                                                 </td>
-                                                <td class="col-company">{{$email->contact->company}}</td>
-                                                <td class="col-name">{{$email->contact->name}}</td>
-                                                <td class="col-email">{{$email->email}}</td>
-                                                <td class="col-phone">{{$email->contact->mobile}}</td>
-                                                <td class="col-phone">{{$email->contact->phone}}</td>
-                                                <td class="col-category">{{$email->contact->category->name}}</td>
-                                                <td class="col-address">{{$email->contact->address}}</td>
-                                                <td class="col-country">{{$email->contact->country}}</td>
+                                                <td>{{$email->contact->company}}</td>
+                                                <td>{{$email->contact->name}}</td>
+                                                <td>{{$email->email}}</td>
+                                                <td>{{$email->contact->mobile}}</td>
+                                                <td>{{$email->contact->phone}}</td>
+                                                <td>{{$email->contact->category->name}}</td>
+                                                <td>{{$email->contact->address}}</td>
+                                                <td>{{$email->contact->country}}</td>
                                                 <td>
                                                     <div class="data-action">
                                                         <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>

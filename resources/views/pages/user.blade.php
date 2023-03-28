@@ -122,9 +122,9 @@
                                     <tbody id="dataTableBody">
                                         @foreach ($users as $key => $user)
                                             <tr class="data-row-item">
-                                                <td class="col-company">{{$key + 1}}</td>
-                                                <td class="col-company">{{$user->name}}</td>
-                                                <td class="col-name"><span title="Contact Lists : ">User</span></td>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$user->name}}</td>
+                                                <td>user</td>
                                                 <td>
                                                     <div class="data-action">
                                                         <a data-w="750" href="{{route('user.edit', ['id' => $user->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -13,14 +14,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::get();
-        $roles = [];
+        $roles = Role::get();
         return view('pages.user', [
             'users' => $users, 
             'editUser' => null, 
             'edit' => false,
             'roles' => $roles
         ]);
-        // $categories = category::with('user')->get();
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -54,7 +54,8 @@ class UserController extends Controller
     {
         $users = User::get();
         $editUser = User::find($id);
-        $roles = [];
+        $roles = Role::get();
+        // dd($roles);
         return view('pages.user', [
             'users' => $users, 
             'editUser' => $editUser, 
