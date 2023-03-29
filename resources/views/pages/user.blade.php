@@ -106,12 +106,17 @@
                                                     <div class="headItem">#</div>
                                                 </div>
                                             </th>
-                                            <th class="col-company" width="40%">
+                                            <th class="col-company" width="30%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">User Name</div>
                                                 </div>
                                             </th>
-                                            <th class="col-name" width="40%">
+                                            <th class="col-company" width="30%">
+                                                <div class="table-header-item">
+                                                    <div class="headItem">User Email</div>
+                                                </div>
+                                            </th>
+                                            <th class="col-name" width="30%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">Role</div>
                                                 </div>
@@ -124,6 +129,7 @@
                                             <tr class="data-row-item">
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$user->name}}</td>
+                                                <td>{{$user->email}}</td>
                                                 <td>{{$user->roles->pluck('name')->first()}}</td>
                                                 <td>
                                                     <div class="data-action">

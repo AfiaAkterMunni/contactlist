@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -60,9 +61,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        // dd($request->all());
         $user = User::find($id);
         if ($user) {
             $data = [
@@ -74,13 +74,5 @@ class UserController extends Controller
             return redirect(url('/users'))->with('editsuccess', 'User Updated Successfully!');
         }
         return redirect(url('/users'))->with('editsuccess', 'User Not found!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
