@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class ContactController extends Controller
 {
     public function show()
-    {
-        $emails = Email::where('status', true)->with('contact')->paginate(5);
+    {   
+        if(auth()->user()->hasRole('user'))
+        {
+            $emails = Email::where('status', true)->whereHas('contact', function($query) {
+                $query->where('created_by', auth()->id());
+            })->latest()->limit(5)->get();
+        }
+         else {
+            $emails = Email::where('status', true)->with('contact')->paginate(15);
+        }
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
     }

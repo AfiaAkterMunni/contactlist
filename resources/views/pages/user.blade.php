@@ -229,22 +229,14 @@
                 @error('email')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
-                <div class="formItem">
-                    <label class="mr-2">Password</label>
-                    <div class="fieldArea">
-                        <input type="text" name="password" class="form-control" placeholder="User Password" required>
-                    </div>
-                </div>
-                @error('password')
-                <p class="alert alert-danger">{{ $message }}</p>
-                @enderror
+                
                 <div class="formItem">
                     <label class="mr-2">Role</label>
                     <div class="fieldArea">
                         <select class="form-control pt-1" name="role" style="font-size: 15px;">
                             <option disabled selected>-- Select User Role --</option>
                             @foreach ($roles as $role)
-                            <option value="{{$role->name}}">{{$role->name}}</option>
+                            <option value="{{$role->name}}" @if ($editUser->roles[0]->name == $role->name) selected @endif>{{$role->name}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -32,8 +32,8 @@ class Contact extends Model
     /**
      * Get the user that owns the contact.
      */
-    public function user(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

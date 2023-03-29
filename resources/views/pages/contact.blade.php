@@ -295,9 +295,11 @@
                                         </select>
                                         <button class="bulk-action-btn" id="bulk_action_btn">Apply</button>
                                     </div>
+                                    @if (auth()->user()->hasRole('admin'))
                                     <div  class="col-md-4">
                                         {{ $emails->links('includes.paginator') }}
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         @else

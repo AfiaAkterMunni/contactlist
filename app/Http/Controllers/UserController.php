@@ -46,7 +46,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $users = User::get();
-        $editUser = User::find($id);
+        $editUser = User::with('roles')->find($id);
+        // dd($editUser);
         $roles = Role::get();
         return view('pages.user', [
             'users' => $users, 
@@ -59,9 +60,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $user = User::find($id);
+        if ($user) {
+            $data = [
+                'name' => $request->input('name'),
+                'email' => $request->input('email')
+            ];
+            $user->update($data);
+            $user->syncRoles($request->input('role'));
+            return redirect(url('/users'))->with('editsuccess', 'User Updated Successfully!');
+        }
+        return redirect(url('/users'))->with('editsuccess', 'User Not found!');
     }
 
     /**
