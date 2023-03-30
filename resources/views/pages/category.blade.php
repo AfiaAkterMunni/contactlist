@@ -78,7 +78,7 @@
         {{ session('success') }}
     </div>
     @endif
-    
+
     @if (session('editsuccess'))
     <div class="alert alert-success alert-dismissible mb-0" role="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -96,15 +96,12 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div id="datalist">
+                        @if (count($categories) > 0)
                         <div class="data-wraper">
                             <div class="data-wrap">
                                 <table class="databuilder-table table table-bordered table-striped info_table table-contact">
                                     <thead>
                                         <tr>
-                                            <th class="bulk-action-th" width="2%">
-                                                <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
-                                                <label class="checkbox-custom-label" for="allSelect"></label>
-                                            </th>
                                             <th class="col-company" width="10%">
                                                 <div class="table-header-item">
                                                     <div class="headItem">#</div>
@@ -125,25 +122,26 @@
                                     </thead>
                                     <tbody id="dataTableBody">
                                         @foreach ($categories as $key => $category)
-                                            <tr class="data-row-item">
-                                                <td class="bulk-action-td" width="2%">
-                                                    <input value="1" type="checkbox" class="styled-checkbox data-check" id="dataCheck10">
-                                                    <label class="checkbox-custom-label" for="dataCheck10"></label>
-                                                </td>
-                                                <td>{{$key + 1}}</td>
-                                                <td>{{$category->name}}</td>
-                                                <td>{{$category->user->name}}</td>
-                                                <td>
-                                                    <div class="data-action">
-                                                        <a data-w="750" href="{{route('category.edit', ['id' => $category->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr class="data-row-item">
+                                            <td>{{$key + 1}}</td>
+                                            <td>{{$category->name}}</td>
+                                            <td>{{$category->user->name}}</td>
+                                            <td>
+                                                <div class="data-action">
+                                                    <a data-w="750" href="{{route('category.edit', ['id' => $category->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        @else
+                        <div class="alert alert-primary" role="alert">
+                            <h4 class="alert-heading">Category Not Found!!</h4>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

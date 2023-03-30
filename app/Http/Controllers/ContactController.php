@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class ContactController extends Controller
 {
     public function show()
-    {   
-        if(auth()->user()->hasRole('user'))
-        {
-            $emails = Email::where('status', true)->whereHas('contact', function($query) {
+    {
+        if (auth()->user()->hasRole('user')) {
+            $emails = Email::where('status', true)->whereHas('contact', function ($query) {
                 $query->where('created_by', auth()->id());
             })->latest()->limit(5)->get();
-        }
-         else {
+        } else {
             $emails = Email::where('status', true)->with('contact')->paginate(15);
         }
         $categories = Category::get();
@@ -42,8 +40,7 @@ class ContactController extends Controller
             'created_by' => Auth::id()
         ];
         $contact = Contact::create($data);
-        foreach($emails as $email)
-        {
+        foreach ($emails as $email) {
             Email::create([
                 'email' => $email,
                 'contact_id' => $contact->id
@@ -51,18 +48,19 @@ class ContactController extends Controller
         }
         return redirect(url('/'))->with('success', 'Contact Added Successfully!');
     }
+
     public function edit($id)
     {
         $editContactEmailWise = Email::with('contact')->find($id);
         $emails = Email::where('status', true)->with('contact')->paginate(5);
         $categories = Category::get();
-        return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' =>$emails, 'categories' => $categories, 'edit' => true]);
+        return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' => $emails, 'categories' => $categories, 'edit' => true]);
     }
 
     public function update(UpdateContactRequest $request, $id)
     {
         $email = Email::with('contact')->find($id);
-        Email::where ('id', $id)->update([
+        Email::where('id', $id)->update([
             'email' => $request->input('email')
         ]);
         Contact::where('id', $email->contact->id)->update([
@@ -77,19 +75,17 @@ class ContactController extends Controller
         ]);
         return redirect(url('/'))->with('editsuccess', 'Contact Updated Successfully!');
     }
+
     public function inactive($id)
     {
         $contact = Email::find($id);
 
-        if($contact->status == true)
-        {
+        if ($contact->status == true) {
             Email::where('id', $id)->update([
                 'status' => false
             ]);
             return redirect(url('/'))->with('deletesuccess', 'Contact Inactive Successfully!');
-        }
-        else
-        {
+        } else {
             Email::where('id', $id)->update([
                 'status' => true
             ]);
@@ -97,13 +93,14 @@ class ContactController extends Controller
         }
         return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
     }
+    
     public function search(Request $request)
     {
         $emails = Email::where('email', 'LIKE', "$request->search")
-                        ->orWhereHas('contact', function ($query) use($request) {
-                            $query->where('company', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "$request->search");
-                        })->paginate(15);
-                       
+            ->orWhereHas('contact', function ($query) use ($request) {
+                $query->where('company', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "$request->search");
+            })->paginate(15);
+
         $categories = Category::get();
         return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
     }

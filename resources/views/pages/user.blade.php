@@ -78,7 +78,7 @@
         {{ session('success') }}
     </div>
     @endif
-    
+
     @if (session('editsuccess'))
     <div class="alert alert-success alert-dismissible mb-0" role="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -126,17 +126,17 @@
                                     </thead>
                                     <tbody id="dataTableBody">
                                         @foreach ($users as $key => $user)
-                                            <tr class="data-row-item">
-                                                <td>{{$key + 1}}</td>
-                                                <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->roles->pluck('name')->first()}}</td>
-                                                <td>
-                                                    <div class="data-action">
-                                                        <a data-w="750" href="{{route('user.edit', ['id' => $user->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr class="data-row-item">
+                                            <td>{{$key + 1}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->roles->pluck('name')->first()}}</td>
+                                            <td>
+                                                <div class="data-action">
+                                                    <a data-w="750" href="{{route('user.edit', ['id' => $user->id])}}" class="action-edit popup"><i class="mailer-icon edit" style="width: 20px;"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -235,7 +235,7 @@
                 @error('email')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
-                
+
                 <div class="formItem">
                     <label class="mr-2">Role</label>
                     <div class="fieldArea">

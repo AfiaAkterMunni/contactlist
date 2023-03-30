@@ -48,7 +48,6 @@ class UserController extends Controller
     {
         $users = User::get();
         $editUser = User::with('roles')->find($id);
-        // dd($editUser);
         $roles = Role::get();
         return view('pages.user', [
             'users' => $users, 

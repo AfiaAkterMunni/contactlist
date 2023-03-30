@@ -15,6 +15,7 @@ class CategoryController extends Controller
         $categories = category::with('user')->get();
         return view('pages.category', ['categories' => $categories, 'editCategory' => null, 'edit' => false]);
     }
+
     public function store(StoreCategoryRequest $request)
     {
         $data = [
@@ -29,9 +30,9 @@ class CategoryController extends Controller
     {
         $categories = category::with('user')->get();
         $editCategory = Category::find($id);
-        // dd($editCategory);
         return view('pages.category', ['categories' => $categories, 'editCategory' => $editCategory, 'edit' => true]);
     }
+
     public function update(UpdateCategoryRequest $request, $id)
     {
         Category::where('id', $id)->update([
