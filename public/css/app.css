@@ -9696,6 +9696,8 @@ h3 {
   padding: 0;
   border-top: 0;
   padding: 0 6px;
+  overflow-wrap: break-word;
+    max-width: 200px;
 }
 
 .table tbody tr:nth-child(even) {

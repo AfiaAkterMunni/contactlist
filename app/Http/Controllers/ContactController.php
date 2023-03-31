@@ -19,7 +19,7 @@ class ContactController extends Controller
                 $query->where('created_by', auth()->id());
             })->latest()->limit(5)->get();
         } else {
-            $emails = Email::where('status', true)->with('contact')->paginate(15);
+            $emails = Email::where('status', true)->with('contact')->latest()->paginate(15);
         }
         $categories = Category::get();
         return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
@@ -52,7 +52,13 @@ class ContactController extends Controller
     public function edit($id)
     {
         $editContactEmailWise = Email::with('contact')->find($id);
-        $emails = Email::where('status', true)->with('contact')->paginate(5);
+        if (auth()->user()->hasRole('user')) {
+            $emails = Email::where('status', true)->whereHas('contact', function ($query) {
+                $query->where('created_by', auth()->id());
+            })->latest()->limit(5)->get();
+        } else {
+            $emails = Email::where('status', true)->with('contact')->latest()->paginate(15);
+        }
         $categories = Category::get();
         return view('pages.contact', ['editContactEmailWise' => $editContactEmailWise, 'emails' => $emails, 'categories' => $categories, 'edit' => true]);
     }

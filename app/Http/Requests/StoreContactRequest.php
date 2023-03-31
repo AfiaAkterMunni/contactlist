@@ -25,7 +25,6 @@ class StoreContactRequest extends FormRequest
         $this->merge([
             'emails' => empty($matches[0]) ? null : array_unique($matches[0]),
         ]);
-        // dd($this->emails);
         return [
             
             'name' => 'string|nullable',
@@ -37,7 +36,7 @@ class StoreContactRequest extends FormRequest
             'company' => 'string|nullable',
             'category' => 'required|numeric|nullable',
             'country' => 'string|nullable',
-            'address' => 'string|nullable'
+            'address' => 'string|nullable|max:250'
         ];
     }
 
