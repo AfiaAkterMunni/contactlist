@@ -36,7 +36,7 @@ body,
 }
 .wrapper .sidebar-area {
   width: 185px;
-  background: #0f0f0f;
+  background: #042745;
 }
 .wrapper .sidebar-area #sidebar-wrapper {
   height: 100%;
@@ -147,7 +147,7 @@ body,
 }
 
 .brand_logo span {
-  color: var(--primary-color);
+  color: #88aabd;
   font-size: 22px;
   font-weight: 600;
 }
