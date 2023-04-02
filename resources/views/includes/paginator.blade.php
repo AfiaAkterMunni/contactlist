@@ -1,17 +1,39 @@
 @if ($paginator->hasPages())
-    <div class="pagination-wrap pagination">
+    <ul class=" pagination">
+        {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <span>< Prev</span>
+            <li class="disabled"><a>«</a></li>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}">< Prev</a>
+            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">«</a></li>
         @endif
-        @for ($page = 1; $page <= $paginator->lastPage(); $page++)
-            <a href="{{ $paginator->url($page) }}" class="@if ($paginator->currentPage() == $page) active @endif">{{$page}}</a>
-        @endfor
+
+        @if($paginator->currentPage() > 3)
+            <li class="hidden-xs"><a href="{{ $paginator->url(1) }}">1</a></li>
+        @endif
+        @if($paginator->currentPage() > 4)
+            <li><a>...</a></li>
+        @endif
+        @foreach(range(1, $paginator->lastPage()) as $i)
+            @if($i >= $paginator->currentPage() - 2 && $i <= $paginator->currentPage() + 2)
+                @if ($i == $paginator->currentPage())
+                    <li class="active"><a class="active">{{ $i }}</a></li>
+                @else
+                    <li><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                @endif
+            @endif
+        @endforeach
+        @if($paginator->currentPage() < $paginator->lastPage() - 3)
+            <li><a>...</a></li>
+        @endif
+        @if($paginator->currentPage() < $paginator->lastPage() - 2)
+            <li class="hidden-xs"><a href="{{ $paginator->url($paginator->lastPage()) }}">{{ $paginator->lastPage() }}</a></li>
+        @endif
+
+        {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <a href="{{$paginator->nextPageUrl()}}">Next ></a>
+            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">»</a></li>
         @else
-            <span>Next</span>
+            <li class="disabled"><a>»</a></li>
         @endif
-    </div>
+    </ul>
 @endif
