@@ -286,21 +286,26 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if (auth()->user()->hasRole('admin'))
                             <div class="data-controller-wrap row">
-                                <div class="bulk-action-wrapper col-md-4">
-                                    <select class="bulk-action custom-select custom-select-sm" id="bulk_action">
-                                        <option value=""></option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                    <button class="bulk-action-btn" id="bulk_action_btn">Apply</button>
+                                <div class=" col-md-4">
+                                    <form action="{{route('contact.bulkaction')}}" method="GET">
+                                        @csrf
+                                        <div class="bulk-action-wrapper">
+                                            <select class="bulk-action custom-select custom-select-sm" name="bulkAction" id="bulk_action">
+                                                <option value=""></option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+                                            <button type="submit" class="bulk-action-btn" id="bulk_action_btn">Apply</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                @if (auth()->user()->hasRole('admin'))
                                 <div class="col-md-4">
                                     {{ $emails->links('includes.paginator') }}
                                 </div>
-                                @endif
                             </div>
+                            @endif
                         </div>
                         @else
                         <div class="alert alert-primary" role="alert">
@@ -518,6 +523,7 @@
     });
 
     let deletedata = document.getElementById('bulk_action_btn');
+    console.log(deletedata.value);
     deletedata.addEventListener('click', function() {
         let selectitems = document.getElementsByClassName('data-check');
         let n = selectitems.length;

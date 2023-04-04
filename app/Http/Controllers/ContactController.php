@@ -110,4 +110,9 @@ class ContactController extends Controller
         $categories = Category::get();
         return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
     }
+    
+    public function bulkaction(Request $request)
+    {
+        dd($request);
+    }
 }
