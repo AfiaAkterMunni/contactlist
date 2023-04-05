@@ -91,13 +91,14 @@ class ContactController extends Controller
                 'status' => false
             ]);
             return redirect(url('/'))->with('deletesuccess', 'Contact Inactive Successfully!');
-        } else {
+        }
+        else {
             Email::where('id', $id)->update([
                 'status' => true
             ]);
             return redirect(url('/'))->with('deletesuccess', 'Contact Active Successfully!');
         }
-        return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
+        // return redirect(url('/'))->with('deletesuccess', 'Contact Deleted Successfully!');
     }
     
     public function search(Request $request)
@@ -113,6 +114,18 @@ class ContactController extends Controller
     
     public function bulkaction(Request $request)
     {
-        dd($request);
+        dd($request->all());
+        // if($request->action == 'active')
+        // {
+        //     dd('active');
+        // }
+        // else if($request->action == 'inactive')
+        // {
+        //     dd('inactive');
+        // }
+        // else
+        // {
+        //     dd('null');
+        // }
     }
 }

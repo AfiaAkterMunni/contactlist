@@ -204,109 +204,107 @@
                 <div class="col-lg-12 ">
                     <div id="datalist">
                         @if (count($emails) > 0)
-                        <div class="data-wraper">
-                            <div class="data-wrap">
-                                <table class="databuilder-table table table-bordered table-striped info_table table-contact">
-                                    <thead>
-                                        <tr>
-                                            <th class="bulk-action-th" width="2%">
-                                                <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
-                                                <label class="checkbox-custom-label" for="allSelect"></label>
-                                            </th>
-                                            <th class="col-company" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Company Name</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-name" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Name</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-email" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Email</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-phone" width="10%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Mobile No</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-phone" width="10%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Phone No</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-category" width="8%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Category</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-address" width="20%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Address</div>
-                                                </div>
-                                            </th>
-                                            <th class="col-country" width="15%">
-                                                <div class="table-header-item">
-                                                    <div class="headItem">Country</div>
-                                                </div>
-                                            </th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="dataTableBody">
-                                        @foreach ($emails as $email)
-                                        <tr class="data-row-item">
-                                            <td class="bulk-action-td" width="2%">
-                                                <input value="{{$email->id}}" type="checkbox" class="styled-checkbox data-check" id="{{$email->id}}">
-                                                <label class="checkbox-custom-label" for="{{$email->id}}"></label>
-                                            </td>
-                                            <td>{{$email->contact->company}}</td>
-                                            <td>{{$email->contact->name}}</td>
-                                            <td>{{$email->email}}</td>
-                                            <td>{{$email->contact->mobile}}</td>
-                                            <td>{{$email->contact->phone}}</td>
-                                            <td>{{$email->contact->category->name}}</td>
-                                            <td>{{$email->contact->address}}</td>
-                                            <td>{{$email->contact->country}}</td>
-                                            <td>
-                                                <div class="data-action">
-                                                    <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
-                                                    @if($email->status == false)
-                                                    <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete" title="inactive"><i class="mailer-icon delete"></i></a>
-                                                    @else
-                                                    <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete" title="active"><i class="mailer-icon act"></i></a>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            @if (auth()->user()->hasRole('admin'))
-                            <div class="data-controller-wrap row">
-                                <div class=" col-md-4">
-                                    <form action="{{route('contact.bulkaction')}}" method="GET">
-                                        @csrf
-                                        <div class="bulk-action-wrapper">
-                                            <select class="bulk-action custom-select custom-select-sm" name="bulkAction" id="bulk_action">
-                                                <option value=""></option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
-                                            </select>
-                                            <button type="submit" class="bulk-action-btn" id="bulk_action_btn">Apply</button>
-                                        </div>
-                                    </form>
+                        <form action="{{route('contact.bulkaction')}}" method="POST">
+                            @csrf
+                            <div class="data-wraper">
+                                <div class="data-wrap">
+                                    <table class="databuilder-table table table-bordered table-striped info_table table-contact">
+                                        <thead>
+                                            <tr>
+                                                <th class="bulk-action-th" width="2%">
+                                                    <input value="" type="checkbox" id="allSelect" class="styled-checkbox">
+                                                    <label class="checkbox-custom-label" for="allSelect"></label>
+                                                </th>
+                                                <th class="col-company" width="15%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Company Name</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-name" width="15%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Name</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-email" width="15%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Email</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-phone" width="10%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Mobile No</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-phone" width="10%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Phone No</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-category" width="8%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Category</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-address" width="20%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Address</div>
+                                                    </div>
+                                                </th>
+                                                <th class="col-country" width="15%">
+                                                    <div class="table-header-item">
+                                                        <div class="headItem">Country</div>
+                                                    </div>
+                                                </th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dataTableBody">
+                                            @foreach ($emails as $email)
+                                            <tr class="data-row-item">
+                                                <td class="bulk-action-td" width="2%">
+                                                    <input value="{{$email->id}}" type="checkbox" name="checkboxes[]" class="styled-checkbox data-check" id="{{$email->id}}">
+                                                    <label class="checkbox-custom-label" for="{{$email->id}}"></label>
+                                                </td>
+                                                <td>{{$email->contact->company}}</td>
+                                                <td>{{$email->contact->name}}</td>
+                                                <td>{{$email->email}}</td>
+                                                <td>{{$email->contact->mobile}}</td>
+                                                <td>{{$email->contact->phone}}</td>
+                                                <td>{{$email->contact->category->name}}</td>
+                                                <td>{{$email->contact->address}}</td>
+                                                <td>{{$email->contact->country}}</td>
+                                                <td>
+                                                    <div class="data-action">
+                                                        <a data-w="750" href="{{route('contact.edit', ['id' => $email->id])}}" class="action-edit popup"><i class="mailer-icon edit"></i></a>
+                                                        @if($email->status == false)
+                                                        <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete" title="inactive"><i class="mailer-icon delete"></i></a>
+                                                        @else
+                                                        <a data-w="750" href="{{route('contact.inactive', ['id' => $email->id])}}" class="action-delete" title="active"><i class="mailer-icon act"></i></a>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-md-4">
-                                    {{ $emails->links('includes.paginator') }}
+                                @if (auth()->user()->hasRole('admin'))
+                                <div class="data-controller-wrap row">
+                                    <div class="bulk-action-wrapper col-md-4">
+                                        <select class="bulk-action custom-select custom-select-sm" name="action" id="bulk_action">
+                                            <option></option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                        <button type="submit" class="bulk-action-btn" id="bulk_action_btn">Apply</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $emails->links('includes.paginator') }}
+                                    </div>
                                 </div>
+                                @endif
                             </div>
-                            @endif
-                        </div>
+                        </form>
                         @else
                         <div class="alert alert-primary" role="alert">
                             <h4 class="alert-heading">Contact Not Found!!</h4>
