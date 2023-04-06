@@ -198,6 +198,18 @@
         <p>{{ $message }}</p>
     </div>
     @enderror
+    @error('emailIds')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
+    @error('action')
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" style="font-size: 30px;">×</button>
+        <p>{{ $message }}</p>
+    </div>
+    @enderror
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
@@ -262,7 +274,7 @@
                                             @foreach ($emails as $email)
                                             <tr class="data-row-item">
                                                 <td class="bulk-action-td" width="2%">
-                                                    <input value="{{$email->id}}" type="checkbox" name="checkboxes[]" class="styled-checkbox data-check" id="{{$email->id}}">
+                                                    <input value="{{$email->id}}" type="checkbox" name="emailIds[]" class="styled-checkbox data-check" id="{{$email->id}}">
                                                     <label class="checkbox-custom-label" for="{{$email->id}}"></label>
                                                 </td>
                                                 <td>{{$email->contact->company}}</td>
@@ -292,7 +304,7 @@
                                 <div class="data-controller-wrap row">
                                     <div class="bulk-action-wrapper col-md-4">
                                         <select class="bulk-action custom-select custom-select-sm" name="action" id="bulk_action">
-                                            <option></option>
+                                            <option disabled selected>-- With Selected --</option>
                                             <option value="active">Active</option>
                                             <option value="inactive">Inactive</option>
                                         </select>

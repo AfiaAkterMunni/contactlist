@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BulkActionRequest;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Models\Category;
@@ -112,20 +113,12 @@ class ContactController extends Controller
         return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
     }
     
-    public function bulkaction(Request $request)
+    public function bulkaction(BulkActionRequest $request)
     {
-        dd($request->all());
-        // if($request->action == 'active')
-        // {
-        //     dd('active');
-        // }
-        // else if($request->action == 'inactive')
-        // {
-        //     dd('inactive');
-        // }
-        // else
-        // {
-        //     dd('null');
-        // }
+        Email::whereIn('id', $request->input('emailIds'))->update([
+            'status' => $request->input('action') == 'active' ? true : false
+        ]);
+        $msg = $request->input('action') == 'active' ? 'Contacts Active Successfully!' : 'Contacts Inactive Successfully!';
+        return redirect(url('/'))->with('deletesuccess', $msg);
     }
 }
