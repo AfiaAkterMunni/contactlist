@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Email;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreContactRequest extends FormRequest
@@ -15,21 +16,28 @@ class StoreContactRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        preg_match_all('/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/', $this->emails, $matches);
+        $this->merge([
+            'emails' => $this->checkEmailUniqueness($matches[0]),
+            'totalEmail' => count($matches[0])
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
     {
-        preg_match_all('/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/', $this->emails, $matches);
-        $this->merge([
-            'emails' => empty($matches[0]) ? null : array_unique($matches[0]),
-        ]);
-        return [
-            
+        return [ 
             'name' => 'string|nullable',
             'emails' => 'required|array|min:1',
-            'emails.*' => 'email|unique:emails,email',
+            'emails.*' => 'email',
             'mobile' => 'numeric|nullable',
             'phone' => 'numeric|nullable',
             'website' => 'string|nullable',
@@ -40,4 +48,14 @@ class StoreContactRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the unique emails form a list of emails
+     */
+    private function checkEmailUniqueness($emailList): array|null
+    {
+        $uniqueEmails = empty($emailList) ? null : array_unique($emailList);
+        $existingEmails = Email::whereIn('email', $uniqueEmails)->pluck('email')->toArray();
+        $returningEmails = array_diff($uniqueEmails, $existingEmails);
+        return count($returningEmails) > 0 ? $returningEmails : null;
+    }
 }

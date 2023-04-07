@@ -28,7 +28,7 @@ class ContactController extends Controller
 
     public function store(StoreContactRequest $request)
     {
-        $emails = $request->emails;
+        $emails = $request->input('emails');
         $data = [
             'name' => $request->input('name'),
             'mobile' => $request->input('mobile'),
