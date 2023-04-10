@@ -39,7 +39,6 @@ class StoreContactRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->all());
         return [ 
             'name' => 'string|nullable',
             'emails' => 'required|array|min:1',
@@ -51,9 +50,8 @@ class StoreContactRequest extends FormRequest
             'category' => 'required|numeric|nullable',
             'country' => 'string|nullable',
             'address' => 'string|nullable|max:250',
-            'uniqueEmails' => 'required',
+            'uniqueEmails' => 'required_unless:emails,null',
         ];
-        
     }
 
     /**
@@ -64,7 +62,7 @@ class StoreContactRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'uniqueEmails.required' => 'All the emails are duplicated. Please provide unique email to store.',
+            'uniqueEmails.required_unless' => 'All the emails are duplicated. Please provide unique email to store.',
         ];
     }
 
