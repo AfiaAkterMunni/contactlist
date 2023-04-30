@@ -124,7 +124,7 @@
                                         @foreach ($categories as $key => $category)
                                         <tr class="data-row-item">
                                             <td>{{$key + 1}}</td>
-                                            <td>{{$category->name}}</td>
+                                            <td><a href="{{route('getContactByCategory', ['id' => $category->id])}}">{{$category->name}}</a></td>
                                             <td>{{$category->user->name}}</td>
                                             <td>
                                                 <div class="data-action">

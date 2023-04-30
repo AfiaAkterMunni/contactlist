@@ -114,6 +114,17 @@ class ContactController extends Controller
         return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
     }
     
+    
+    public function getContactByCategory($id)
+    {
+        $emails = Email::whereHas('contact', function($query) use($id) {
+                $query->where('category_id', $id);
+            })->paginate(15);
+
+        $categories = Category::get();
+        return view('pages.contact', ['emails' => $emails, 'categories' => $categories, 'editContactEmailWise' => null, 'edit' => false]);
+    }
+
     public function bulkaction(BulkActionRequest $request)
     {
         Email::whereIn('id', $request->input('emailIds'))->update([
@@ -122,4 +133,5 @@ class ContactController extends Controller
         $msg = $request->input('action') == 'active' ? 'Contacts Active Successfully!' : 'Contacts Inactive Successfully!';
         return redirect(url('/'))->with('deletesuccess', $msg);
     }
+    
 }
