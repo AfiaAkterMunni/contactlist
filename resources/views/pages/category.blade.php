@@ -124,7 +124,7 @@
                                         @foreach ($categories as $key => $category)
                                         <tr class="data-row-item">
                                             <td>{{$key + 1}}</td>
-                                            <td> @if (auth()->user()->hasRole('admin')) <a href="{{route('getContactByCategory', ['id' => $category->id])}}">{{$category->name}}</a> @else {{$category->name}} @endif</td>
+                                            <td> @if (auth()->user()->hasRole(['admin', 'manager'])) <a href="{{route('getContactByCategory', ['id' => $category->id])}}">{{$category->name}}</a> @else {{$category->name}} @endif</td>
                                             <td>{{$category->user->name}}</td>
                                             <td>
                                                 <div class="data-action">

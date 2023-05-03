@@ -306,7 +306,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                @if (auth()->user()->hasRole('admin'))
+                                @if (auth()->user()->hasRole(['admin', 'manager']))
                                 <div class="data-controller-wrap row">
                                     <div class="bulk-action-wrapper col-md-4">
                                         <select class="bulk-action custom-select custom-select-sm" name="action" id="bulk_action">

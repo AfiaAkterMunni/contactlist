@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::middleware('auth')->group(function(){
-    
+
     Route::get('/', [ContactController::class, 'show'])->name('contact');
     Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/contact/edit/{id}', [ContactController::class, 'edit'])->name('contact.edit');
@@ -34,14 +34,16 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     
-
-    Route::middleware('role:admin')->group(function () {
-        Route::get('/contact/inactive/{id}', [ContactController::class, 'inactive'])->name('contact.inactive');
-        Route::post('/contact/bulkaction', [ContactController::class, 'bulkaction'])->name('contact.bulkaction');
+    
+    Route::middleware('role:admin|manager')->group(function () {
         Route::get('/contact/search', [ContactController::class, 'search'])->name('contact.search');
         Route::get('/getContactByCategory/{id}', [ContactController::class, 'getContactByCategory'])->name('getContactByCategory');
     });
 
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/contact/inactive/{id}', [ContactController::class, 'inactive'])->name('contact.inactive');
+        Route::post('/contact/bulkaction', [ContactController::class, 'bulkaction'])->name('contact.bulkaction');
+    });
 
     Route::prefix('users')->middleware('role:admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users');
