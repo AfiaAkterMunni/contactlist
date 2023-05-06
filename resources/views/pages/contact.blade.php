@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
-                    <a href="#" class="btn btn_a" style="min-width: 85px">
+                    <a href="#" class="btn btn_a" onclick="openDownloadForm()" style="min-width: 85px">
                         <svg fill="#448ac1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="ionicon">
                             <title>Download</title>
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -335,6 +335,92 @@
     </div>
 </div>
 
+<!-- DOWNLOAD POP UP DESIGN -->
+<div class="popup-wrap" id="myDownloadForm" style="display: none;">
+    <div class="popup-body " style="width:600px"><span class="closePopup" onclick="closeDownloadForm()"></span>
+        <div class="popup-inner">
+            <form class="ajx" method="POST" action="{{route('contact.store')}}">
+                @csrf
+                <div class="form-group row">
+                    <div class=" col-md-12">
+                        <label>Select File Type</label>
+                        <div class="fieldArea">
+                            <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                                <option disabled selected>-- Select File Type --</option>
+                                <option value="">.txt</option>
+                                <option value="">.xls</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class=" col-md-12">
+                        <label>Select Column</label>
+                        <div class="fieldArea">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Company Name</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Name</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Email</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Mobile No</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Phone No</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Address</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Website</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="formItem col-md-6">
+                        <label>Category</label>
+                        <div class="fieldArea">
+                            <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                                <option disabled selected>-- Select Contact Category --</option>
+                                @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formItem col-md-6">
+                        <label>Country</label>
+                        <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                                <option disabled selected>-- Select Contact Category --</option>
+                                <option value="{{$category->id}}">Bangladesh</option>
+                                <option value="{{$category->id}}">Canada</option>
+                                <option value="{{$category->id}}">India</option>
+                                <option value="{{$category->id}}">Sweden</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="formItem">
+                    <button type="submit" class="btn btn-primary mailer-primary-btn mr-3 ml-3">Cancel</button>
+                    <button type="submit" class="btn btn-primary mailer-primary-btn">Download</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- ADD CONTACT POP UP DESIGN -->
 <div class="popup-wrap" id="myContactForm" style="display: none;">
     <div class="popup-body " style="width:750px"><span class="closePopup" onclick="closeContactForm()"></span>
@@ -510,6 +596,15 @@
 
 
 <script>
+    // DOWNLOAD popup open
+    function openDownloadForm() {
+        document.getElementById("myDownloadForm").style.display = "block";
+    }
+
+    // DOWNLOAD popup close
+    function closeDownloadForm() {
+        document.getElementById("myDownloadForm").style.display = "none";
+    }
     // contact popup open
     function openContactForm() {
         document.getElementById("myContactForm").style.display = "block";
