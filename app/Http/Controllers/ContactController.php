@@ -23,7 +23,8 @@ class ContactController extends Controller
             $emails = Email::where('status', true)->with('contact')->latest()->paginate(15);
         }
         $categories = Category::get();
-        return view('pages.contact', ['categories' => $categories, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
+        $countries = Contact::distinct()->whereNotNull('country')->get(['country']);
+        return view('pages.contact', ['categories' => $categories, 'countries' => $countries, 'emails' => $emails, 'editContactEmailWise' => null, 'edit' => false]);
     }
 
     public function store(StoreContactRequest $request)

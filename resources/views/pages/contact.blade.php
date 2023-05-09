@@ -339,51 +339,51 @@
 <div class="popup-wrap" id="myDownloadForm" style="display: none;">
     <div class="popup-body " style="width:600px"><span class="closePopup" onclick="closeDownloadForm()"></span>
         <div class="popup-inner">
-            <form class="ajx" method="POST" action="{{route('contact.store')}}">
+            <form class="ajx" method="POST" action="">
                 @csrf
                 <div class="form-group row">
                     <div class=" col-md-12">
                         <label>Select File Type</label>
                         <div class="fieldArea">
-                            <select class="form-control pt-1" name="category" style="font-size: 15px;">
+                            <select class="form-control pt-1" id="mySelect" style="font-size: 15px;" onchange="displaySelectColumn()">
                                 <option disabled selected>-- Select File Type --</option>
-                                <option value="">.txt</option>
-                                <option value="">.xls</option>
+                                <option value="txt">.txt</option>
+                                <option value="xls">.xls</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="selectColumn" style="display: none;">
                     <div class=" col-md-12">
                         <label>Select Column</label>
                         <div class="fieldArea">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Company Name</label>
+                                <input class="form-check-input" type="checkbox" id="company" value="company">
+                                <label class="form-check-label" for="company">Company Name</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Name</label>
+                                <input class="form-check-input" type="checkbox" id="name" value="name">
+                                <label class="form-check-label" for="name">Name</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Email</label>
+                                <input class="form-check-input" type="checkbox" id="email" value="email">
+                                <label class="form-check-label" for="email">Email</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Mobile No</label>
+                                <input class="form-check-input" type="checkbox" id="mobile" value="mobile">
+                                <label class="form-check-label" for="mobile">Mobile No</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Phone No</label>
+                                <input class="form-check-input" type="checkbox" id="phone" value="phone">
+                                <label class="form-check-label" for="phone">Phone No</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Address</label>
+                                <input class="form-check-input" type="checkbox" id="address" value="address">
+                                <label class="form-check-label" for="address">Address</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Website</label>
+                                <input class="form-check-input" type="checkbox" id="website" value="website">
+                                <label class="form-check-label" for="website">Website</label>
                             </div>
                         </div>
                     </div>
@@ -393,7 +393,7 @@
                         <label>Category</label>
                         <div class="fieldArea">
                             <select class="form-control pt-1" name="category" style="font-size: 15px;">
-                                <option disabled selected>-- Select Contact Category --</option>
+                                <option disabled selected>-- Select Category --</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
@@ -403,17 +403,16 @@
                     <div class="formItem col-md-6">
                         <label>Country</label>
                         <select class="form-control pt-1" name="category" style="font-size: 15px;">
-                                <option disabled selected>-- Select Contact Category --</option>
-                                <option value="{{$category->id}}">Bangladesh</option>
-                                <option value="{{$category->id}}">Canada</option>
-                                <option value="{{$category->id}}">India</option>
-                                <option value="{{$category->id}}">Sweden</option>
+                                <option disabled selected>-- Select Country --</option>
+                                @foreach ($countries as $country)
+                                <option value="{{$country->country}}">{{$country->country}}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
                 <br>
                 <div class="formItem">
-                    <button type="submit" class="btn btn-primary mailer-primary-btn mr-3 ml-3">Cancel</button>
+                    <button class="btn btn-primary mailer-primary-btn mr-3 ml-3">Cancel</button>
                     <button type="submit" class="btn btn-primary mailer-primary-btn">Download</button>
                 </div>
             </form>
@@ -604,6 +603,16 @@
     // DOWNLOAD popup close
     function closeDownloadForm() {
         document.getElementById("myDownloadForm").style.display = "none";
+    }
+    // display Column for excel in DOWNLOAD popup
+    function displaySelectColumn() {
+        if(document.getElementById("mySelect").value == 'xls')
+        {
+            document.getElementById("selectColumn").style.display = "block";
+        }
+        else{
+            document.getElementById("selectColumn").style.display = "none";
+        }
     }
     // contact popup open
     function openContactForm() {
